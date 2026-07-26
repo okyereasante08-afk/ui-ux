@@ -1,0 +1,71 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 210 40% 4%;
+    --foreground: 210 20% 98%;
+    --card: 210 35% 8%;
+    --card-foreground: 210 20% 98%;
+    --popover: 210 35% 8%;
+    --popover-foreground: 210 20% 98%;
+    --primary: 220 85% 56%;
+    --primary-foreground: 210 20% 98%;
+    --secondary: 210 30% 12%;
+    --secondary-foreground: 210 20% 98%;
+    --muted: 210 25% 16%;
+    --muted-foreground: 210 15% 55%;
+    --accent: 210 25% 18%;
+    --accent-foreground: 210 20% 98%;
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 210 20% 98%;
+    --border: 210 25% 16%;
+    --input: 210 25% 16%;
+    --ring: 168 76% 42%;
+    --radius: 0.5rem;
+  }
+
+  * {
+    -webkit-tap-highlight-color: transparent;
+    touch-action: manipulation;
+  }
+
+  html {
+    scroll-behavior: smooth;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  body {
+    font-family: "IBM Plex Sans", system-ui, sans-serif;
+    background-color: #0B1220;
+    color: #F7F9FC;
+    overflow-x: hidden;
+    overscroll-behavior-y: none;
+    padding-top: env(safe-area-inset-top);
+    padding-bottom: env(safe-area-inset-bottom);
+  }
+
+  /* Hide scrollbar for carousel */
+  .hide-scrollbar {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+  .hide-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+
+  /* Chip notch detail */
+  .chip-notch {
+    clip-path: polygon(
+      0 12px, 12px 12px, 12px 0,
+      100% 0, 100% 100%, 0 100%
+    );
+  }
+
+  /* Trace glow */
+  .trace-glow {
+    filter: drop-shadow(0 0 4px rgba(20, 184, 166, 0.4));
+  }
+}
