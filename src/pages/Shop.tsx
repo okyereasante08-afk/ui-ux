@@ -11,7 +11,7 @@ import { ShoppingBag } from "lucide-react";
 
 export default function Shop() {
   return (
-    <div className="min-h-screen bg-circuit-navy px-8 pb-24">
+    <div className="min-h-screen bg-background px-8 pb-24">
       <PageHeader
         eyebrow="shop // merchandise"
         title="ACES Merchandise"

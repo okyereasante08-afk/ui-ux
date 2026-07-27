@@ -17,7 +17,7 @@ const pillars = [
 
 export default function About() {
   return (
-    <div className="min-h-screen bg-circuit-navy px-6 pb-24">
+    <div className="min-h-screen bg-background px-8 pb-24">
       <PageHeader
         eyebrow="about // aces-knust"
         title="Association of Computer Engineering Students"
@@ -55,7 +55,7 @@ export default function About() {
               className="rounded-xl border border-foreground/10 bg-foreground/[0.02] p-4 hover:border-aces-blue/30 transition-colors"
             >
               <pillar.icon className="h-5 w-5 text-aces-blue mb-3" />
-              <h3 className="text-sm font-semibold text-board-white mb-1">{pillar.title}</h3>
+              <h3 className="text-sm font-semibold text-foreground mb-1">{pillar.title}</h3>
               <p className="text-xs text-foreground/50 leading-relaxed">{pillar.description}</p>
             </motion.div>
           ))}

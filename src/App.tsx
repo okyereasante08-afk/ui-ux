@@ -10,36 +10,35 @@ import Marketplace from "./pages/Marketplace";
 import Scholarships from "./pages/Scholarships";
 import Courses from "./pages/Courses";
 import Shop from "./pages/Shop";
+import ClubDetail from "./pages/ClubDetail";
 import { TraceProvider } from "./components/TraceConnector";
 import BottomNav from "./components/layout/BottomNav";
 import { PWAProvider } from "./hooks/usePWA";
 import { ThemeProvider } from "./hooks/useTheme";
-import { MoreMenuProvider } from "./hooks/useMoreMenu";
 
 function App() {
   return (
     <ThemeProvider>
       <PWAProvider>
         <TraceProvider>
-          <MoreMenuProvider>
-            <div className="relative min-h-screen bg-circuit-navy">
-              <AnimatePresence mode="wait">
-                <Routes>
-                  <Route path="/" element={<Home />} />
-                  <Route path="/about" element={<About />} />
-                  <Route path="/executives" element={<Executives />} />
-                  <Route path="/department" element={<Staff />} />
-                  <Route path="/gallery" element={<Gallery />} />
-                  <Route path="/events" element={<Events />} />
-                  <Route path="/marketplace" element={<Marketplace />} />
-                  <Route path="/scholarships" element={<Scholarships />} />
-                  <Route path="/courses" element={<Courses />} />
-                  <Route path="/shop" element={<Shop />} />
-                </Routes>
-              </AnimatePresence>
-              <BottomNav />
-            </div>
-          </MoreMenuProvider>
+          <div className="relative min-h-screen bg-background">
+            <AnimatePresence mode="wait">
+              <Routes>
+                <Route path="/" element={<Home />} />
+                <Route path="/about" element={<About />} />
+                <Route path="/executives" element={<Executives />} />
+                <Route path="/department" element={<Staff />} />
+                <Route path="/gallery" element={<Gallery />} />
+                <Route path="/events" element={<Events />} />
+                <Route path="/marketplace" element={<Marketplace />} />
+                <Route path="/scholarships" element={<Scholarships />} />
+                <Route path="/courses" element={<Courses />} />
+                <Route path="/shop" element={<Shop />} />
+                <Route path="/clubs/:slug" element={<ClubDetail />} />
+              </Routes>
+            </AnimatePresence>
+            <BottomNav />
+          </div>
         </TraceProvider>
       </PWAProvider>
     </ThemeProvider>

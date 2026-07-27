@@ -13,7 +13,7 @@ export default function Scholarships() {
   const [email, setEmail] = useState("");
 
   return (
-    <div className="min-h-screen bg-circuit-navy px-6 pb-24">
+    <div className="min-h-screen bg-background px-8 pb-24">
       <PageHeader
         eyebrow="scholarships // opportunities"
         title="Scholarship Opportunities"

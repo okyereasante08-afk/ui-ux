@@ -28,7 +28,7 @@ export default function Executives() {
   const executives = executivesByYear[year] ?? [];
 
   return (
-    <div className="min-h-screen bg-circuit-navy px-6 pb-24">
+    <div className="min-h-screen bg-background px-8 pb-24">
       <PageHeader
         eyebrow="executives // by year"
         title="Meet Your Leaders"

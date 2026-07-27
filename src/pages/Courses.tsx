@@ -10,7 +10,7 @@ import EmptyState from "@/components/ui/EmptyState";
 
 export default function Courses() {
   return (
-    <div className="min-h-screen bg-circuit-navy px-8 pb-24">
+    <div className="min-h-screen bg-background px-8 pb-24">
       <PageHeader
         eyebrow="courses // resources"
         title="Course Materials"

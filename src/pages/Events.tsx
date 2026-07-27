@@ -22,7 +22,7 @@ export default function Events() {
   const [tab, setTab] = useState<"upcoming" | "past">("upcoming");
 
   return (
-    <div className="min-h-screen bg-circuit-navy px-6 pb-24">
+    <div className="min-h-screen bg-background px-8 pb-24">
       <PageHeader
         eyebrow="events // full schedule"
         title="ACES Events"
@@ -57,7 +57,7 @@ export default function Events() {
               <span className="font-mono text-[10px] uppercase tracking-wider bg-foreground/5 text-foreground/40 px-2 py-1 rounded">
                 Date TBD
               </span>
-              <h3 className="mt-3 text-sm font-semibold text-board-white">{event.title}</h3>
+              <h3 className="mt-3 text-sm font-semibold text-foreground">{event.title}</h3>
               <p className="mt-1 text-xs text-foreground/50 leading-relaxed">{event.description}</p>
             </motion.div>
           ))}
