@@ -62,6 +62,16 @@ export default function BottomNav() {
     setMoreOpen(false);
   }, [location.pathname]);
 
+  // Lets other components (e.g. the Hero's "Explore ACES" button) open
+  // this same sidebar instead of building a second, separate nav drawer.
+  useEffect(() => {
+    function onOpenRequest() {
+      setMoreOpen(true);
+    }
+    window.addEventListener("sidebar:open", onOpenRequest);
+    return () => window.removeEventListener("sidebar:open", onOpenRequest);
+  }, []);
+
   const isMoreActive = moreGroups.some((g) => g.links.some((l) => l.path === location.pathname));
 
   return (

@@ -25,7 +25,7 @@ export default function Marketplace() {
   const [active, setActive] = useState("All");
 
   return (
-    <div className="min-h-screen bg-circuit-navy px-6 pb-24">
+    <div className="min-h-screen bg-circuit-navy px-8 pb-24">
       <PageHeader
         eyebrow="student marketplace"
         title="ACES Marketplace"

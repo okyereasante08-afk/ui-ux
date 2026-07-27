@@ -22,7 +22,7 @@ const links = [
 
 export default function FooterSection() {
   return (
-    <footer className="relative bg-circuit-navy border-t border-foreground/5 pt-16 pb-32 px-6 md:px-12 lg:px-24">
+    <footer className="relative bg-circuit-navy border-t border-foreground/5 pt-16 pb-32 px-8 md:px-12 lg:px-24">
       {/* Ground plane visual — subtle trace lines */}
       <div
         className="absolute inset-0 opacity-[0.02] pointer-events-none"

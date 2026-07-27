@@ -81,7 +81,7 @@
   }
 
   body {
-    font-family: "IBM Plex Sans", system-ui, sans-serif;
+    font-family: "Montserrat", system-ui, sans-serif;
     background-color: hsl(var(--surface));
     color: hsl(var(--heading));
     transition: background-color 0.3s ease, color 0.3s ease;
@@ -89,6 +89,12 @@
     overscroll-behavior-y: none;
     padding-top: env(safe-area-inset-top);
     padding-bottom: env(safe-area-inset-bottom);
+  }
+
+  /* Every heading gets Syne globally — no need to add font-heading to
+     each h1/h2/h3 individually across every page and section file. */
+  h1, h2, h3, h4, h5, h6 {
+    font-family: "Syne", system-ui, sans-serif;
   }
 
   /* Hide scrollbar for carousel */

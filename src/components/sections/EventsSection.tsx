@@ -33,7 +33,7 @@ export default function EventsSection() {
 
   return (
     <TraceNode id="events" className="py-20">
-      <div className="px-6 md:px-12 lg:px-24 mb-8">
+      <div className="px-8 md:px-12 lg:px-24 mb-8">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -43,7 +43,7 @@ export default function EventsSection() {
           <p className="font-mono text-xs text-aces-blue uppercase tracking-widest mb-2">
             03 // Upcoming
           </p>
-          <h2 className="font-sans text-3xl md:text-4xl font-bold text-board-white">
+          <h2 className="font-heading text-3xl md:text-4xl font-extrabold text-board-white">
             Events
           </h2>
         </motion.div>
@@ -51,7 +51,7 @@ export default function EventsSection() {
 
       <div
         ref={scrollRef}
-        className="flex gap-4 overflow-x-auto hide-scrollbar px-6 md:px-12 lg:px-24 pb-4 snap-x snap-mandatory"
+        className="flex gap-4 overflow-x-auto hide-scrollbar px-8 md:px-12 lg:px-24 pb-4 snap-x snap-mandatory"
       >
         {events.map((event, index) => (
           <motion.div
@@ -69,11 +69,11 @@ export default function EventsSection() {
                 </span>
               </div>
 
-              <h3 className="font-sans text-base font-semibold text-board-white mb-3 leading-snug group-hover:text-aces-blue transition-colors">
+              <h3 className="font-heading text-base font-bold text-board-white mb-3 leading-snug group-hover:text-aces-blue transition-colors">
                 {event.title}
               </h3>
 
-              <p className="text-xs text-foreground/50 leading-relaxed">
+              <p className="text-xs font-medium text-foreground/50 leading-relaxed">
                 {event.description}
               </p>
 

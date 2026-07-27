@@ -22,7 +22,7 @@ export default function Events() {
   const [tab, setTab] = useState<"upcoming" | "past">("upcoming");
 
   return (
-    <div className="min-h-screen bg-circuit-navy px-6 pb-24">
+    <div className="min-h-screen bg-circuit-navy px-8 pb-24">
       <PageHeader
         eyebrow="events // full schedule"
         title="ACES Events"

@@ -17,7 +17,7 @@ const pillars = [
 
 export default function About() {
   return (
-    <div className="min-h-screen bg-circuit-navy px-6 pb-24">
+    <div className="min-h-screen bg-circuit-navy px-8 pb-24">
       <PageHeader
         eyebrow="about // aces-knust"
         title="Association of Computer Engineering Students"

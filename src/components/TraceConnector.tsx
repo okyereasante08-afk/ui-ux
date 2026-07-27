@@ -71,20 +71,20 @@ function TraceLine() {
   const pathLength = useTransform(smoothProgress, [0, 1], [0, 1]);
 
   return (
-    <div className="fixed left-4 md:left-8 top-0 bottom-0 z-40 pointer-events-none">
+    <div className="fixed left-2 md:left-8 top-0 bottom-0 z-40 pointer-events-none">
       <svg
-        width="24"
+        width="14"
         height="100%"
-        viewBox="0 0 24 1000"
+        viewBox="0 0 14 1000"
         preserveAspectRatio="none"
-        className="h-full w-6"
+        className="h-full w-[14px] md:w-6"
       >
         {/* Background trace (dimmed) — stroke-dim-trace tracks the
             light/dark theme via CSS variables, unlike a hardcoded hex */}
         <line
-          x1="12"
+          x1="7"
           y1="0"
-          x2="12"
+          x2="7"
           y2="1000"
           className="stroke-dim-trace"
           strokeWidth="2"
@@ -94,20 +94,20 @@ function TraceLine() {
             prefers-reduced-motion, scroll-linked + surge-reactive otherwise */}
         {prefersReducedMotion ? (
           <line
-            x1="12"
+            x1="7"
             y1="0"
-            x2="12"
+            x2="7"
             y2="1000"
             stroke="#0B5FFF"
             strokeWidth="2"
             vectorEffect="non-scaling-stroke"
-            style={{ filter: "drop-shadow(0 0 4px rgba(11, 95, 255, 0.5))" }}
+            style={{ filter: "drop-shadow(0 0 2px rgba(11, 95, 255, 0.5))" }}
           />
         ) : (
           <motion.line
-            x1="12"
+            x1="7"
             y1="0"
-            x2="12"
+            x2="7"
             y2="1000"
             stroke="#0B5FFF"
             vectorEffect="non-scaling-stroke"
@@ -117,7 +117,7 @@ function TraceLine() {
               pathLength,
               filter: surging
                 ? "drop-shadow(0 0 8px #0B5FFF) drop-shadow(0 0 3px #0B5FFF)"
-                : "drop-shadow(0 0 4px rgba(11, 95, 255, 0.5))",
+                : "drop-shadow(0 0 2px rgba(11, 95, 255, 0.5))",
             }}
             className="trace-glow"
           />
@@ -160,9 +160,14 @@ export function TraceNode({ id, children, className = "" }: TraceNodeProps) {
       transition={{ duration: 0.6, ease: "easeOut" }}
       onViewportEnter={() => setIsVisible(true)}
     >
-      {/* Active node indicator */}
+      {/* Active node indicator — aligned to the trace line's real x
+          position. The previous `-left-4`/`-left-8` values were negative
+          offsets from this element's own edge, which computed to a
+          position off the left of the viewport — silently clipped by
+          `overflow-x: hidden` on body, so these dots were never actually
+          visible on mobile. */}
       <div
-        className={`absolute -left-4 md:-left-8 top-1/2 -translate-y-1/2 w-3 h-3 rounded-full border-2 border-aces-blue transition-all duration-500 ${
+        className={`absolute left-[15px] md:left-11 top-1/2 -translate-x-1/2 -translate-y-1/2 w-3 h-3 rounded-full border-2 border-aces-blue transition-all duration-500 ${
           isVisible ? "bg-aces-blue scale-100" : "bg-circuit-navy scale-75"
         }`}
         style={{
