@@ -40,7 +40,7 @@ export default function Marketplace() {
             className={`shrink-0 flex items-center gap-1.5 rounded-full px-3 py-1.5 text-xs font-medium whitespace-nowrap transition-colors ${
               active === cat.label
                 ? "bg-primary text-white"
-                : "bg-white/5 text-white/60"
+                : "bg-foreground/5 text-foreground/60"
             }`}
           >
             <span>{cat.emoji}</span>

@@ -52,13 +52,13 @@ export default function Executives() {
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0, y: -8 }}
               transition={{ duration: 0.15 }}
-              className="absolute left-0 right-0 top-full z-10 mt-2 overflow-hidden rounded-lg border border-white/10 bg-[#0f1a2e] shadow-xl"
+              className="absolute left-0 right-0 top-full z-10 mt-2 overflow-hidden rounded-lg border border-border bg-popover shadow-xl"
             >
               {years.map((y) => (
                 <button
                   key={y}
                   onClick={() => { setYear(y); setOpen(false); }}
-                  className="block w-full px-4 py-2 text-left text-sm text-white/80 hover:bg-white/5"
+                  className="block w-full px-4 py-2 text-left text-sm text-foreground/80 hover:bg-foreground/5"
                 >
                   {y}
                 </button>

@@ -40,7 +40,7 @@ export default function EventsSection() {
           viewport={{ once: true }}
           transition={{ duration: 0.5 }}
         >
-          <p className="font-mono text-xs text-trace-cyan uppercase tracking-widest mb-2">
+          <p className="font-mono text-xs text-aces-blue uppercase tracking-widest mb-2">
             03 // Upcoming
           </p>
           <h2 className="font-sans text-3xl md:text-4xl font-bold text-board-white">
@@ -62,25 +62,25 @@ export default function EventsSection() {
             transition={{ duration: 0.5, delay: index * 0.1 }}
             className="flex-shrink-0 w-[280px] md:w-[320px] snap-start"
           >
-            <div className="h-full bg-white/[0.03] border border-white/10 rounded-lg p-5 hover:border-trace-cyan/30 transition-colors duration-300 group">
+            <div className="h-full bg-foreground/[0.03] border border-foreground/10 rounded-lg p-5 hover:border-aces-blue/30 transition-colors duration-300 group">
               <div className="mb-4">
-                <span className="font-mono text-xs text-white/30 uppercase tracking-wider bg-white/5 px-2 py-1 rounded">
+                <span className="font-mono text-xs text-foreground/30 uppercase tracking-wider bg-foreground/5 px-2 py-1 rounded">
                   Date TBD
                 </span>
               </div>
 
-              <h3 className="font-sans text-base font-semibold text-board-white mb-3 leading-snug group-hover:text-trace-cyan transition-colors">
+              <h3 className="font-sans text-base font-semibold text-board-white mb-3 leading-snug group-hover:text-aces-blue transition-colors">
                 {event.title}
               </h3>
 
-              <p className="text-xs text-white/50 leading-relaxed">
+              <p className="text-xs text-foreground/50 leading-relaxed">
                 {event.description}
               </p>
 
-              <div className="mt-4 pt-4 border-t border-white/5">
+              <div className="mt-4 pt-4 border-t border-foreground/5">
                 <a
                   href="/events"
-                  className="flex items-center gap-1 text-xs font-mono text-trace-cyan/80 hover:text-trace-cyan transition-colors uppercase tracking-wider"
+                  className="flex items-center gap-1 text-xs font-mono text-aces-blue/80 hover:text-aces-blue transition-colors uppercase tracking-wider"
                 >
                   Details
                   <ChevronRight size={14} />

@@ -35,7 +35,7 @@ export default function Events() {
             key={t}
             onClick={() => setTab(t)}
             className={`rounded-full px-4 py-1.5 text-xs font-mono uppercase tracking-wider transition-colors ${
-              tab === t ? "bg-primary text-white" : "bg-white/5 text-white/50"
+              tab === t ? "bg-primary text-white" : "bg-foreground/5 text-foreground/50"
             }`}
           >
             {t} Events
@@ -52,13 +52,13 @@ export default function Events() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: "-40px" }}
               transition={{ duration: 0.35, delay: i * 0.06 }}
-              className="rounded-xl border border-white/10 bg-white/[0.02] p-5 hover:border-trace-cyan/30 transition-colors"
+              className="rounded-xl border border-foreground/10 bg-foreground/[0.02] p-5 hover:border-aces-blue/30 transition-colors"
             >
-              <span className="font-mono text-[10px] uppercase tracking-wider bg-white/5 text-white/40 px-2 py-1 rounded">
+              <span className="font-mono text-[10px] uppercase tracking-wider bg-foreground/5 text-foreground/40 px-2 py-1 rounded">
                 Date TBD
               </span>
               <h3 className="mt-3 text-sm font-semibold text-white">{event.title}</h3>
-              <p className="mt-1 text-xs text-white/50 leading-relaxed">{event.description}</p>
+              <p className="mt-1 text-xs text-foreground/50 leading-relaxed">{event.description}</p>
             </motion.div>
           ))}
         </div>

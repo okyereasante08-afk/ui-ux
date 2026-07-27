@@ -23,7 +23,7 @@ export default function About() {
         title="Association of Computer Engineering Students"
       />
 
-      <div className="space-y-4 text-sm leading-relaxed text-white/60 max-w-xl">
+      <div className="space-y-4 text-sm leading-relaxed text-foreground/60 max-w-xl">
         <p>
           The Association of Computer Engineering Students (ACES) is the
           official student body representing all Computer Engineering
@@ -41,7 +41,7 @@ export default function About() {
       </div>
 
       <div className="mt-12">
-        <p className="font-mono text-xs uppercase tracking-widest text-trace-cyan/80 mb-4">
+        <p className="font-mono text-xs uppercase tracking-widest text-aces-blue/80 mb-4">
           pillars // 01–05
         </p>
         <div className="grid grid-cols-2 md:grid-cols-5 gap-3">
@@ -52,11 +52,11 @@ export default function About() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: "-40px" }}
               transition={{ duration: 0.4, delay: i * 0.06 }}
-              className="rounded-xl border border-white/10 bg-white/[0.02] p-4 hover:border-trace-cyan/30 transition-colors"
+              className="rounded-xl border border-foreground/10 bg-foreground/[0.02] p-4 hover:border-aces-blue/30 transition-colors"
             >
-              <pillar.icon className="h-5 w-5 text-trace-cyan mb-3" />
+              <pillar.icon className="h-5 w-5 text-aces-blue mb-3" />
               <h3 className="text-sm font-semibold text-white mb-1">{pillar.title}</h3>
-              <p className="text-xs text-white/50 leading-relaxed">{pillar.description}</p>
+              <p className="text-xs text-foreground/50 leading-relaxed">{pillar.description}</p>
             </motion.div>
           ))}
         </div>

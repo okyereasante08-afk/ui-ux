@@ -38,11 +38,14 @@ export default {
           DEFAULT: "hsl(var(--card))",
           foreground: "hsl(var(--card-foreground))",
         },
-        "circuit-navy": "#0B1220",
-        "signal-blue": "#2F6FED",
-        "trace-cyan": "#14B8A6",
-        "board-white": "#F7F9FC",
-        "dim-trace": "#1E3A5F",
+        // ACES brand palette — theme-aware via CSS variables (see
+        // src/index.css). Values match the official brand sheet:
+        // ACES Blue #0B5FFF · Deep Navy #0B1F3A · Light Blue #EAF4FF ·
+        // White #FFFFFF · Text #111827 · Muted Text #5B6B7E.
+        "circuit-navy": "hsl(var(--surface))",
+        "aces-blue": "hsl(var(--aces-blue))",
+        "board-white": "hsl(var(--heading))",
+        "dim-trace": "hsl(var(--trace-track))",
       },
       fontFamily: {
         sans: ["IBM Plex Sans", "system-ui", "sans-serif"],

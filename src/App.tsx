@@ -13,30 +13,33 @@ import Shop from "./pages/Shop";
 import { TraceProvider } from "./components/TraceConnector";
 import BottomNav from "./components/layout/BottomNav";
 import { PWAProvider } from "./hooks/usePWA";
+import { ThemeProvider } from "./hooks/useTheme";
 
 function App() {
   return (
-    <PWAProvider>
-      <TraceProvider>
-        <div className="relative min-h-screen bg-circuit-navy">
-          <AnimatePresence mode="wait">
-            <Routes>
-              <Route path="/" element={<Home />} />
-              <Route path="/about" element={<About />} />
-              <Route path="/executives" element={<Executives />} />
-              <Route path="/department" element={<Staff />} />
-              <Route path="/gallery" element={<Gallery />} />
-              <Route path="/events" element={<Events />} />
-              <Route path="/marketplace" element={<Marketplace />} />
-              <Route path="/scholarships" element={<Scholarships />} />
-              <Route path="/courses" element={<Courses />} />
-              <Route path="/shop" element={<Shop />} />
-            </Routes>
-          </AnimatePresence>
-          <BottomNav />
-        </div>
-      </TraceProvider>
-    </PWAProvider>
+    <ThemeProvider>
+      <PWAProvider>
+        <TraceProvider>
+          <div className="relative min-h-screen bg-circuit-navy">
+            <AnimatePresence mode="wait">
+              <Routes>
+                <Route path="/" element={<Home />} />
+                <Route path="/about" element={<About />} />
+                <Route path="/executives" element={<Executives />} />
+                <Route path="/department" element={<Staff />} />
+                <Route path="/gallery" element={<Gallery />} />
+                <Route path="/events" element={<Events />} />
+                <Route path="/marketplace" element={<Marketplace />} />
+                <Route path="/scholarships" element={<Scholarships />} />
+                <Route path="/courses" element={<Courses />} />
+                <Route path="/shop" element={<Shop />} />
+              </Routes>
+            </AnimatePresence>
+            <BottomNav />
+          </div>
+        </TraceProvider>
+      </PWAProvider>
+    </ThemeProvider>
   );
 }
 

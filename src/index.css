@@ -3,27 +3,70 @@
 @tailwind utilities;
 
 @layer base {
+  /*
+    Real ACES brand sheet (CodeFest 2026 UI/UX Challenge brief):
+    ACES Blue #0B5FFF · Deep Navy #0B1F3A · Light Blue #EAF4FF ·
+    White #FFFFFF · Text #111827 · Muted Text #5B6B7E.
+
+    Default (no [data-theme] attribute) is dark, matching the site's
+    original look. [data-theme="light"] overrides to the light set.
+    Toggled by ThemeProvider (src/hooks/useTheme.tsx).
+  */
   :root {
-    --background: 210 40% 4%;
-    --foreground: 210 20% 98%;
-    --card: 210 35% 8%;
-    --card-foreground: 210 20% 98%;
-    --popover: 210 35% 8%;
-    --popover-foreground: 210 20% 98%;
-    --primary: 220 85% 56%;
-    --primary-foreground: 210 20% 98%;
-    --secondary: 210 30% 12%;
-    --secondary-foreground: 210 20% 98%;
-    --muted: 210 25% 16%;
-    --muted-foreground: 210 15% 55%;
-    --accent: 210 25% 18%;
-    --accent-foreground: 210 20% 98%;
+    --background: 215 68% 14%;       /* Deep Navy #0B1F3A */
+    --foreground: 0 0% 100%;         /* White */
+    --card: 215 50% 18%;
+    --card-foreground: 0 0% 100%;
+    --popover: 215 50% 18%;
+    --popover-foreground: 0 0% 100%;
+    --primary: 219 100% 52%;         /* ACES Blue #0B5FFF */
+    --primary-foreground: 0 0% 100%;
+    --secondary: 215 40% 20%;
+    --secondary-foreground: 0 0% 100%;
+    --muted: 215 40% 20%;
+    --muted-foreground: 213 20% 68%;
+    --accent: 219 100% 52%;
+    --accent-foreground: 0 0% 100%;
     --destructive: 0 84% 60%;
-    --destructive-foreground: 210 20% 98%;
-    --border: 210 25% 16%;
-    --input: 210 25% 16%;
-    --ring: 168 76% 42%;
+    --destructive-foreground: 0 0% 100%;
+    --border: 215 40% 24%;
+    --input: 215 40% 24%;
+    --ring: 219 100% 52%;
     --radius: 0.5rem;
+
+    /* Legacy structural tokens (circuit-navy / aces-blue / board-white /
+       dim-trace classes in tailwind.config.ts point here) */
+    --surface: 215 68% 14%;
+    --aces-blue: 219 100% 52%;
+    --heading: 0 0% 100%;
+    --trace-track: 215 45% 26%;
+  }
+
+  [data-theme="light"] {
+    --background: 0 0% 100%;         /* White #FFFFFF */
+    --foreground: 221 39% 11%;       /* Text #111827 */
+    --card: 211 100% 96%;            /* Light Blue #EAF4FF */
+    --card-foreground: 221 39% 11%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 221 39% 11%;
+    --primary: 219 100% 52%;         /* ACES Blue #0B5FFF */
+    --primary-foreground: 0 0% 100%;
+    --secondary: 211 100% 96%;
+    --secondary-foreground: 221 39% 11%;
+    --muted: 211 55% 93%;
+    --muted-foreground: 213 16% 43%; /* Muted Text #5B6B7E */
+    --accent: 219 100% 52%;
+    --accent-foreground: 0 0% 100%;
+    --destructive: 0 74% 50%;
+    --destructive-foreground: 0 0% 100%;
+    --border: 211 40% 88%;
+    --input: 211 40% 88%;
+    --ring: 219 100% 52%;
+
+    --surface: 0 0% 100%;
+    --aces-blue: 219 100% 52%;
+    --heading: 221 39% 11%;
+    --trace-track: 211 45% 85%;
   }
 
   * {
@@ -39,8 +82,9 @@
 
   body {
     font-family: "IBM Plex Sans", system-ui, sans-serif;
-    background-color: #0B1220;
-    color: #F7F9FC;
+    background-color: hsl(var(--surface));
+    color: hsl(var(--heading));
+    transition: background-color 0.3s ease, color 0.3s ease;
     overflow-x: hidden;
     overscroll-behavior-y: none;
     padding-top: env(safe-area-inset-top);
@@ -66,6 +110,6 @@
 
   /* Trace glow */
   .trace-glow {
-    filter: drop-shadow(0 0 4px rgba(20, 184, 166, 0.4));
+    filter: drop-shadow(0 0 4px hsl(var(--aces-blue) / 0.4));
   }
 }

@@ -22,14 +22,14 @@ const links = [
 
 export default function FooterSection() {
   return (
-    <footer className="relative bg-circuit-navy border-t border-white/5 pt-16 pb-32 px-6 md:px-12 lg:px-24">
+    <footer className="relative bg-circuit-navy border-t border-foreground/5 pt-16 pb-32 px-6 md:px-12 lg:px-24">
       {/* Ground plane visual — subtle trace lines */}
       <div
         className="absolute inset-0 opacity-[0.02] pointer-events-none"
         style={{
           backgroundImage: `
-            linear-gradient(rgba(20, 184, 166, 0.5) 1px, transparent 1px),
-            linear-gradient(90deg, rgba(20, 184, 166, 0.5) 1px, transparent 1px)
+            linear-gradient(rgba(11, 95, 255, 0.5) 1px, transparent 1px),
+            linear-gradient(90deg, rgba(11, 95, 255, 0.5) 1px, transparent 1px)
           `,
           backgroundSize: "40px 40px",
         }}
@@ -46,7 +46,7 @@ export default function FooterSection() {
           <p className="font-mono text-2xl font-bold text-board-white tracking-tight">
             ACES
           </p>
-          <p className="font-mono text-xs text-white/30 uppercase tracking-widest mt-1">
+          <p className="font-mono text-xs text-foreground/30 uppercase tracking-widest mt-1">
             Association of Computer Engineering Students
           </p>
         </motion.div>
@@ -57,7 +57,7 @@ export default function FooterSection() {
             <Link
               key={link.label}
               to={link.to}
-              className="font-mono text-xs text-white/40 hover:text-trace-cyan transition-colors uppercase tracking-wider"
+              className="font-mono text-xs text-foreground/40 hover:text-aces-blue transition-colors uppercase tracking-wider"
             >
               {link.label}
             </Link>
@@ -73,7 +73,7 @@ export default function FooterSection() {
               target="_blank"
               rel="noopener noreferrer"
               aria-label={social.label}
-              className="w-10 h-10 rounded-lg bg-white/5 flex items-center justify-center hover:bg-trace-cyan/10 hover:text-trace-cyan transition-colors text-white/40"
+              className="w-10 h-10 rounded-lg bg-foreground/5 flex items-center justify-center hover:bg-aces-blue/10 hover:text-aces-blue transition-colors text-foreground/40"
             >
               <social.icon size={18} />
             </a>
@@ -81,9 +81,9 @@ export default function FooterSection() {
         </div>
 
         {/* Bottom line */}
-        <div className="pt-6 border-t border-white/5">
-          <p className="font-mono text-[10px] text-white/20 uppercase tracking-wider">
-            © 2026 ACES KNUST · Dept. of Computer Engineering
+        <div className="pt-6 border-t border-foreground/5">
+          <p className="font-mono text-[10px] text-foreground/20 uppercase tracking-wider">
+            © 2024 ACES KNUST · Dept. of Computer Engineering
           </p>
         </div>
       </div>

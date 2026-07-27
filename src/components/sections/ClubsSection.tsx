@@ -32,7 +32,7 @@ export default function ClubsSection() {
           transition={{ duration: 0.5 }}
           className="mb-12"
         >
-          <p className="font-mono text-xs text-trace-cyan uppercase tracking-widest mb-2">
+          <p className="font-mono text-xs text-aces-blue uppercase tracking-widest mb-2">
             02 // Our Clubs
           </p>
           <h2 className="font-sans text-3xl md:text-4xl font-bold text-board-white">
@@ -50,21 +50,21 @@ export default function ClubsSection() {
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: index * 0.1 }}
             >
-              <div className="chip-notch relative bg-white/[0.03] border border-white/10 rounded-lg p-6 hover:border-trace-cyan/30 transition-colors duration-300 group">
+              <div className="chip-notch relative bg-foreground/[0.03] border border-foreground/10 rounded-lg p-6 hover:border-aces-blue/30 transition-colors duration-300 group">
                 {/* Chip notch visual indicator */}
-                <div className="absolute top-0 left-0 w-3 h-3 border-t-2 border-l-2 border-trace-cyan/40 rounded-tl" />
+                <div className="absolute top-0 left-0 w-3 h-3 border-t-2 border-l-2 border-aces-blue/40 rounded-tl" />
 
                 <div className="flex items-start gap-4">
                   {/* Icon */}
-                  <div className="flex-shrink-0 w-12 h-12 rounded-lg bg-trace-cyan/10 flex items-center justify-center">
-                    <club.icon size={24} className="text-trace-cyan" />
+                  <div className="flex-shrink-0 w-12 h-12 rounded-lg bg-aces-blue/10 flex items-center justify-center">
+                    <club.icon size={24} className="text-aces-blue" />
                   </div>
 
                   <div className="flex-1 min-w-0">
-                    <h3 className="font-sans text-lg font-semibold text-board-white group-hover:text-trace-cyan transition-colors mb-2">
+                    <h3 className="font-sans text-lg font-semibold text-board-white group-hover:text-aces-blue transition-colors mb-2">
                       {club.name}
                     </h3>
-                    <p className="text-sm text-white/50 leading-relaxed">
+                    <p className="text-sm text-foreground/50 leading-relaxed">
                       {club.description}
                     </p>
                   </div>

@@ -13,7 +13,7 @@ export default function PageHeader({ eyebrow, title, description }: PageHeaderPr
         initial={{ opacity: 0, x: -12 }}
         animate={{ opacity: 1, x: 0 }}
         transition={{ duration: 0.4 }}
-        className="font-mono text-xs uppercase tracking-widest text-trace-cyan/80"
+        className="font-mono text-xs uppercase tracking-widest text-aces-blue/80"
       >
         {eyebrow}
       </motion.p>
@@ -30,7 +30,7 @@ export default function PageHeader({ eyebrow, title, description }: PageHeaderPr
           initial={{ opacity: 0, y: 8 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.4, delay: 0.1 }}
-          className="max-w-md text-sm text-white/60"
+          className="max-w-md text-sm text-foreground/60"
         >
           {description}
         </motion.p>

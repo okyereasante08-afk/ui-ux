@@ -8,7 +8,7 @@ function useConsoleEasterEgg() {
   useEffect(() => {
     console.log(
       "%cACES // KNUST",
-      "color:#14B8A6; font-family:monospace; font-size:20px; font-weight:bold;",
+      "color:#0B5FFF; font-family:monospace; font-size:20px; font-weight:bold;",
     );
     console.log(
       "%c> dept. of computer engineering — if you're reading this, you already belong here.",
@@ -42,8 +42,8 @@ export default function HeroSection() {
         className="absolute inset-0 opacity-[0.03]"
         style={{
           backgroundImage: `
-            linear-gradient(rgba(20, 184, 166, 0.3) 1px, transparent 1px),
-            linear-gradient(90deg, rgba(20, 184, 166, 0.3) 1px, transparent 1px)
+            linear-gradient(rgba(11, 95, 255, 0.3) 1px, transparent 1px),
+            linear-gradient(90deg, rgba(11, 95, 255, 0.3) 1px, transparent 1px)
           `,
           backgroundSize: "60px 60px",
         }}
@@ -57,7 +57,7 @@ export default function HeroSection() {
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.6, delay: 0.2 }}
             onClick={handleEyebrowTap}
-            className="font-mono text-xs tracking-widest text-trace-cyan/80 uppercase cursor-pointer select-none"
+            className="font-mono text-xs tracking-widest text-aces-blue/80 uppercase cursor-pointer select-none"
           >
             aces // knust · dept. of computer engineering
           </motion.p>
@@ -69,11 +69,11 @@ export default function HeroSection() {
           >
             <span className="relative flex h-2 w-2">
               {!prefersReducedMotion && (
-                <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-trace-cyan opacity-75" />
+                <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-aces-blue opacity-75" />
               )}
-              <span className="relative inline-flex h-2 w-2 rounded-full bg-trace-cyan" />
+              <span className="relative inline-flex h-2 w-2 rounded-full bg-aces-blue" />
             </span>
-            <span className="font-mono text-[10px] tracking-widest text-white/40">
+            <span className="font-mono text-[10px] tracking-widest text-foreground/40">
               ONLINE
             </span>
           </motion.div>
@@ -87,7 +87,7 @@ export default function HeroSection() {
           className="font-sans text-4xl md:text-5xl lg:text-6xl font-bold text-board-white leading-[1.1] mb-6"
         >
           Welcome to the{" "}
-          <span className="text-trace-cyan">Land of ACES</span>
+          <span className="text-aces-blue">Land of ACES</span>
         </motion.h1>
 
         {/* Subhead */}
@@ -95,7 +95,7 @@ export default function HeroSection() {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.6 }}
-          className="text-base md:text-lg text-white/60 leading-relaxed mb-10 max-w-md"
+          className="text-base md:text-lg text-foreground/60 leading-relaxed mb-10 max-w-md"
         >
           The Association of Computer Engineering Students at KNUST — 
           building circuits, writing code, and shaping the future of technology.
@@ -123,11 +123,11 @@ export default function HeroSection() {
         <motion.div
           animate={prefersReducedMotion ? {} : { y: [0, 8, 0] }}
           transition={{ repeat: Infinity, duration: 2, ease: "easeInOut" }}
-          className="w-5 h-8 rounded-full border-2 border-white/20 flex items-start justify-center p-1"
+          className="w-5 h-8 rounded-full border-2 border-foreground/20 flex items-start justify-center p-1"
         >
-          <div className="w-1 h-2 rounded-full bg-trace-cyan" />
+          <div className="w-1 h-2 rounded-full bg-aces-blue" />
         </motion.div>
-        <span className="font-mono text-[10px] text-white/30 uppercase tracking-widest">
+        <span className="font-mono text-[10px] text-foreground/30 uppercase tracking-widest">
           Scroll
         </span>
       </motion.div>
@@ -146,7 +146,7 @@ export default function HeroSection() {
             textAnchor="middle"
             className="font-mono"
             fill="none"
-            stroke="#14B8A6"
+            stroke="#0B5FFF"
             strokeWidth="0.5"
             fontSize="48"
             fontWeight="700"

@@ -52,9 +52,9 @@ export default function CurrentPulseButton({
   };
 
   const variants = {
-    primary: "bg-signal-blue text-board-white hover:bg-signal-blue/90",
-    secondary: "bg-transparent border-2 border-signal-blue text-signal-blue hover:bg-signal-blue/10",
-    ghost: "bg-transparent text-signal-blue hover:bg-signal-blue/10",
+    primary: "bg-aces-blue text-board-white hover:bg-aces-blue/90",
+    secondary: "bg-transparent border-2 border-aces-blue text-aces-blue hover:bg-aces-blue/10",
+    ghost: "bg-transparent text-aces-blue hover:bg-aces-blue/10",
   };
 
   const sizes = {
@@ -71,7 +71,7 @@ export default function CurrentPulseButton({
       onClick={handleClick}
       whileTap={{ scale: 0.97 }}
       className={cn(
-        "relative overflow-hidden rounded-lg font-mono font-medium tracking-wide uppercase transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-trace-cyan focus-visible:ring-offset-2 focus-visible:ring-offset-circuit-navy",
+        "relative overflow-hidden rounded-lg font-mono font-medium tracking-wide uppercase transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-aces-blue focus-visible:ring-offset-2 focus-visible:ring-offset-circuit-navy",
         variants[variant],
         sizes[size],
         disabled && "opacity-50 cursor-not-allowed",
@@ -89,7 +89,7 @@ export default function CurrentPulseButton({
             animate={{ scale: 2.5, opacity: 0 }}
             exit={{ opacity: 0 }}
             transition={{ duration: 0.4, ease: "easeOut" }}
-            className="absolute rounded-full bg-trace-cyan pointer-events-none"
+            className="absolute rounded-full bg-aces-blue pointer-events-none"
             style={{
               left: ripple.x,
               top: ripple.y,

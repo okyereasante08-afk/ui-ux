@@ -79,13 +79,14 @@ function TraceLine() {
         preserveAspectRatio="none"
         className="h-full w-6"
       >
-        {/* Background trace (dimmed) */}
+        {/* Background trace (dimmed) — stroke-dim-trace tracks the
+            light/dark theme via CSS variables, unlike a hardcoded hex */}
         <line
           x1="12"
           y1="0"
           x2="12"
           y2="1000"
-          stroke="#1E3A5F"
+          className="stroke-dim-trace"
           strokeWidth="2"
           vectorEffect="non-scaling-stroke"
         />
@@ -97,10 +98,10 @@ function TraceLine() {
             y1="0"
             x2="12"
             y2="1000"
-            stroke="#14B8A6"
+            stroke="#0B5FFF"
             strokeWidth="2"
             vectorEffect="non-scaling-stroke"
-            style={{ filter: "drop-shadow(0 0 4px rgba(20, 184, 166, 0.5))" }}
+            style={{ filter: "drop-shadow(0 0 4px rgba(11, 95, 255, 0.5))" }}
           />
         ) : (
           <motion.line
@@ -108,15 +109,15 @@ function TraceLine() {
             y1="0"
             x2="12"
             y2="1000"
-            stroke="#14B8A6"
+            stroke="#0B5FFF"
             vectorEffect="non-scaling-stroke"
             animate={{ strokeWidth: surging ? 4 : 2 }}
             transition={{ duration: 0.3 }}
             style={{
               pathLength,
               filter: surging
-                ? "drop-shadow(0 0 8px #14B8A6) drop-shadow(0 0 3px #14B8A6)"
-                : "drop-shadow(0 0 4px rgba(20, 184, 166, 0.5))",
+                ? "drop-shadow(0 0 8px #0B5FFF) drop-shadow(0 0 3px #0B5FFF)"
+                : "drop-shadow(0 0 4px rgba(11, 95, 255, 0.5))",
             }}
             className="trace-glow"
           />
@@ -161,11 +162,11 @@ export function TraceNode({ id, children, className = "" }: TraceNodeProps) {
     >
       {/* Active node indicator */}
       <div
-        className={`absolute -left-4 md:-left-8 top-1/2 -translate-y-1/2 w-3 h-3 rounded-full border-2 border-trace-cyan transition-all duration-500 ${
-          isVisible ? "bg-trace-cyan scale-100" : "bg-circuit-navy scale-75"
+        className={`absolute -left-4 md:-left-8 top-1/2 -translate-y-1/2 w-3 h-3 rounded-full border-2 border-aces-blue transition-all duration-500 ${
+          isVisible ? "bg-aces-blue scale-100" : "bg-circuit-navy scale-75"
         }`}
         style={{
-          boxShadow: isVisible ? "0 0 8px rgba(20, 184, 166, 0.6)" : "none",
+          boxShadow: isVisible ? "0 0 8px rgba(11, 95, 255, 0.6)" : "none",
         }}
       />
       {children}

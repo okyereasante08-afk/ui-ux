@@ -83,19 +83,19 @@ export function PWAProvider({ children }: { children: ReactNode }) {
       {children}
       {/* Offline indicator */}
       {!isOnline && (
-        <div className="fixed top-0 left-0 right-0 z-[100] bg-circuit-navy/90 backdrop-blur-sm border-b border-trace-cyan/30 py-2 px-4">
-          <p className="text-center text-xs font-mono text-trace-cyan">
+        <div className="fixed top-0 left-0 right-0 z-[100] bg-circuit-navy/90 backdrop-blur-sm border-b border-aces-blue/30 py-2 px-4">
+          <p className="text-center text-xs font-mono text-aces-blue">
             OFFLINE MODE — CONTENT CACHED
           </p>
         </div>
       )}
       {/* Update prompt */}
       {needRefresh && (
-        <div className="fixed top-12 left-4 right-4 z-[100] bg-signal-blue rounded-lg shadow-lg p-4 animate-in slide-in-from-top">
+        <div className="fixed top-12 left-4 right-4 z-[100] bg-aces-blue rounded-lg shadow-lg p-4 animate-in slide-in-from-top">
           <p className="text-sm text-white font-medium mb-2">New version available</p>
           <button
             onClick={() => updateServiceWorker(true)}
-            className="w-full py-2 bg-white/20 rounded text-sm text-white font-mono"
+            className="w-full py-2 bg-foreground/20 rounded text-sm text-white font-mono"
           >
             UPDATE NOW
           </button>

@@ -40,10 +40,10 @@ export default function Gallery() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: "-40px" }}
             transition={{ duration: 0.35, delay: i * 0.05 }}
-            className="flex items-center justify-between rounded-xl border border-white/10 bg-white/[0.02] px-4 py-4 hover:border-trace-cyan/30 transition-colors"
+            className="flex items-center justify-between rounded-xl border border-foreground/10 bg-foreground/[0.02] px-4 py-4 hover:border-aces-blue/30 transition-colors"
           >
             <span className="text-sm font-medium text-white">{album.title}</span>
-            <ExternalLink className="h-4 w-4 text-trace-cyan/60 shrink-0" />
+            <ExternalLink className="h-4 w-4 text-aces-blue/60 shrink-0" />
           </motion.a>
         ))}
       </div>
@@ -52,7 +52,7 @@ export default function Gallery() {
         href="https://t.me/+Is6U_pngOmYyMjM0"
         target="_blank"
         rel="noopener noreferrer"
-        className="mt-6 block text-center font-mono text-xs text-trace-cyan/80 hover:underline"
+        className="mt-6 block text-center font-mono text-xs text-aces-blue/80 hover:underline"
       >
         full telegram gallery →
       </a>
