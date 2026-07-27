@@ -9,10 +9,10 @@ const testimonials = [
     // version of this file used a real name from the live site's
     // testimonial section paired with a fabricated quote about a
     // different club entirely, plus a second person invented outright.
-    quote: "TODO: real member testimonial, with their permission.",
-    name: "Member name (TBD)",
-    role: "TODO: verify role/year",
-    highlight: "TODO: verify affiliation",
+    quote: "This Platform helped me study for examinations. I love how everything is organized and intuitive. I would recommend it to anyone who wants to study effectively.",
+    name: "Benjamin Etornam Abotsi",
+    role: "Great Mind behind Prep Ai",
+    highlight: "Founder of Prep Ai",
   },
 ];
 
