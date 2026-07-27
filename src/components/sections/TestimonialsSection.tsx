@@ -18,7 +18,7 @@ const testimonials = [
 
 export default function TestimonialsSection() {
   return (
-    <TraceNode id="testimonials" className="py-20 px-8 md:px-12 lg:px-24">
+    <TraceNode id="testimonials" className="py-20 px-6 md:px-12 lg:px-24">
       <div className="max-w-2xl mx-auto md:mx-0">
         {/* Section header */}
         <motion.div

@@ -22,7 +22,7 @@ const clubs = [
 
 export default function ClubsSection() {
   return (
-    <TraceNode id="clubs" className="py-20 px-8 md:px-12 lg:px-24">
+    <TraceNode id="clubs" className="py-20 px-6 md:px-12 lg:px-24">
       <div className="max-w-2xl mx-auto md:mx-0">
         {/* Section header */}
         <motion.div
@@ -35,7 +35,7 @@ export default function ClubsSection() {
           <p className="font-mono text-xs text-aces-blue uppercase tracking-widest mb-2">
             02 // Our Clubs
           </p>
-          <h2 className="font-heading text-3xl md:text-4xl font-extrabold text-board-white">
+          <h2 className="font-heading text-3xl md:text-4xl font-bold text-board-white">
             Specialization Tracks
           </h2>
         </motion.div>
@@ -64,7 +64,7 @@ export default function ClubsSection() {
                     <h3 className="font-heading text-lg font-bold text-board-white group-hover:text-aces-blue transition-colors mb-2">
                       {club.name}
                     </h3>
-                    <p className="text-sm font-medium text-foreground/50 leading-relaxed">
+                    <p className="text-sm text-foreground/50 leading-relaxed">
                       {club.description}
                     </p>
                   </div>

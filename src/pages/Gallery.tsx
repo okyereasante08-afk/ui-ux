@@ -22,7 +22,7 @@ const albums = [
 
 export default function Gallery() {
   return (
-    <div className="min-h-screen bg-circuit-navy px-8 pb-24">
+    <div className="min-h-screen bg-circuit-navy px-6 pb-24">
       <PageHeader
         eyebrow="gallery // albums"
         title="ACES Gallery"
@@ -42,7 +42,7 @@ export default function Gallery() {
             transition={{ duration: 0.35, delay: i * 0.05 }}
             className="flex items-center justify-between rounded-xl border border-foreground/10 bg-foreground/[0.02] px-4 py-4 hover:border-aces-blue/30 transition-colors"
           >
-            <span className="text-sm font-medium text-white">{album.title}</span>
+            <span className="text-sm font-medium text-board-white">{album.title}</span>
             <ExternalLink className="h-4 w-4 text-aces-blue/60 shrink-0" />
           </motion.a>
         ))}

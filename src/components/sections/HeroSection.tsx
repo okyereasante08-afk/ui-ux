@@ -1,6 +1,7 @@
 import { useEffect, useRef } from "react";
 import { motion, useReducedMotion } from "framer-motion";
 import CurrentPulseButton from "@/components/ui/CurrentPulseButton";
+import { useMoreMenu } from "@/hooks/useMoreMenu";
 
 // Easter egg — a console message for anyone who actually opens devtools.
 // Zero risk, on-brand for a computer engineering department.
@@ -21,6 +22,7 @@ export default function HeroSection() {
   useConsoleEasterEgg();
   const prefersReducedMotion = useReducedMotion();
   const clickTimes = useRef<number[]>([]);
+  const { open: openMore } = useMoreMenu();
 
   // Easter egg — tap the eyebrow line 5 times within 1.5s to trigger a
   // brief power-surge on the trace line. Attached to the eyebrow (not
@@ -36,7 +38,7 @@ export default function HeroSection() {
     }
   }
   return (
-    <section className="relative min-h-[100dvh] flex flex-col justify-center px-8 md:px-12 lg:px-24 overflow-hidden">
+    <section className="relative min-h-[100dvh] flex flex-col justify-center px-6 md:px-12 lg:px-24 overflow-hidden">
       {/* Background subtle grid */}
       <div
         className="absolute inset-0 opacity-[0.03]"
@@ -95,7 +97,7 @@ export default function HeroSection() {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.6 }}
-          className="text-base md:text-lg text-foreground/60 font-medium leading-relaxed mb-10 max-w-md"
+          className="text-base md:text-lg font-medium text-foreground/70 leading-relaxed mb-10 max-w-md"
         >
           The Association of Computer Engineering Students at KNUST — 
           building circuits, writing code, and shaping the future of technology.
@@ -107,11 +109,7 @@ export default function HeroSection() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.8 }}
         >
-          <CurrentPulseButton
-            variant="primary"
-            size="lg"
-            onClick={() => window.dispatchEvent(new CustomEvent("sidebar:open"))}
-          >
+          <CurrentPulseButton variant="primary" size="lg" onClick={openMore}>
             Explore ACES
           </CurrentPulseButton>
         </motion.div>

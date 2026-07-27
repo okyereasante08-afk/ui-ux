@@ -4,6 +4,7 @@ import { Home, Calendar, Info, Menu, X, Users, GraduationCap, ShoppingBag } from
 import { Link, useLocation } from "react-router-dom";
 import { cn } from "@/lib/utils";
 import ThemeToggle from "@/components/ui/ThemeToggle";
+import { useMoreMenu } from "@/hooks/useMoreMenu";
 
 // Exactly 3 primary destinations + a menu toggle — everything else lives
 // in the grouped "More" sidebar rather than crowding the bottom bar.
@@ -44,7 +45,7 @@ const moreGroups = [
 
 export default function BottomNav() {
   const [hidden, setHidden] = useState(false);
-  const [moreOpen, setMoreOpen] = useState(false);
+  const { isOpen: moreOpen, open: openMore, close: closeMore } = useMoreMenu();
   const { scrollY } = useScroll();
   const location = useLocation();
 
@@ -59,18 +60,9 @@ export default function BottomNav() {
 
   useEffect(() => {
     setHidden(false);
-    setMoreOpen(false);
+    closeMore();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [location.pathname]);
-
-  // Lets other components (e.g. the Hero's "Explore ACES" button) open
-  // this same sidebar instead of building a second, separate nav drawer.
-  useEffect(() => {
-    function onOpenRequest() {
-      setMoreOpen(true);
-    }
-    window.addEventListener("sidebar:open", onOpenRequest);
-    return () => window.removeEventListener("sidebar:open", onOpenRequest);
-  }, []);
 
   const isMoreActive = moreGroups.some((g) => g.links.some((l) => l.path === location.pathname));
 
@@ -82,7 +74,7 @@ export default function BottomNav() {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            onClick={() => setMoreOpen(false)}
+            onClick={closeMore}
             className="fixed inset-0 z-40 bg-black/60"
           />
         )}
@@ -102,7 +94,7 @@ export default function BottomNav() {
               <span className="font-mono text-xs uppercase tracking-widest text-muted-foreground">
                 menu
               </span>
-              <button onClick={() => setMoreOpen(false)} aria-label="Close menu">
+              <button onClick={closeMore} aria-label="Close menu">
                 <X className="h-5 w-5 text-foreground/70" />
               </button>
             </div>
@@ -127,7 +119,7 @@ export default function BottomNav() {
                         <Link
                           key={link.path}
                           to={link.path}
-                          onClick={() => setMoreOpen(false)}
+                          onClick={closeMore}
                           className={cn(
                             "rounded-lg border px-4 py-3 text-sm transition-colors",
                             isActive
@@ -183,7 +175,7 @@ export default function BottomNav() {
           })}
 
           <button
-            onClick={() => setMoreOpen(true)}
+            onClick={openMore}
             className="relative flex flex-col items-center justify-center w-16 h-full"
           >
             {isMoreActive && (

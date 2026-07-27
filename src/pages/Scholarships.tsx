@@ -13,7 +13,7 @@ export default function Scholarships() {
   const [email, setEmail] = useState("");
 
   return (
-    <div className="min-h-screen bg-circuit-navy px-8 pb-24">
+    <div className="min-h-screen bg-circuit-navy px-6 pb-24">
       <PageHeader
         eyebrow="scholarships // opportunities"
         title="Scholarship Opportunities"
@@ -28,7 +28,7 @@ export default function Scholarships() {
               value={email}
               onChange={(e) => setEmail(e.target.value)}
               placeholder="Email address"
-              className="w-full rounded-md border border-foreground/10 bg-foreground/5 px-3 py-2 text-sm text-white placeholder:text-foreground/30"
+              className="w-full rounded-md border border-foreground/10 bg-foreground/5 px-3 py-2 text-sm text-foreground placeholder:text-foreground/30"
             />
             <CurrentPulseButton size="sm">Notify me</CurrentPulseButton>
           </div>

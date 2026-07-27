@@ -21,7 +21,7 @@ export default function PageHeader({ eyebrow, title, description }: PageHeaderPr
         initial={{ opacity: 0, y: 8 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.4, delay: 0.05 }}
-        className="text-3xl font-semibold text-white"
+        className="font-heading text-3xl font-bold text-board-white"
       >
         {title}
       </motion.h1>

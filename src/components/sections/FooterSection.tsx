@@ -83,7 +83,7 @@ export default function FooterSection() {
         {/* Bottom line */}
         <div className="pt-6 border-t border-foreground/5">
           <p className="font-mono text-[10px] text-foreground/20 uppercase tracking-wider">
-            © 2024 ACES KNUST · Dept. of Computer Engineering
+            © 2026 ACES KNUST · Dept. of Computer Engineering
           </p>
         </div>
       </div>

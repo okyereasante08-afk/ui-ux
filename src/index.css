@@ -91,12 +91,6 @@
     padding-bottom: env(safe-area-inset-bottom);
   }
 
-  /* Every heading gets Syne globally — no need to add font-heading to
-     each h1/h2/h3 individually across every page and section file. */
-  h1, h2, h3, h4, h5, h6 {
-    font-family: "Syne", system-ui, sans-serif;
-  }
-
   /* Hide scrollbar for carousel */
   .hide-scrollbar {
     -ms-overflow-style: none;

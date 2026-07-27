@@ -71,62 +71,89 @@ function TraceLine() {
   const pathLength = useTransform(smoothProgress, [0, 1], [0, 1]);
 
   return (
-    <div className="fixed left-2 md:left-8 top-0 bottom-0 z-40 pointer-events-none">
-      <svg
-        width="14"
-        height="100%"
-        viewBox="0 0 14 1000"
-        preserveAspectRatio="none"
-        className="h-full w-[14px] md:w-6"
-      >
-        {/* Background trace (dimmed) — stroke-dim-trace tracks the
-            light/dark theme via CSS variables, unlike a hardcoded hex */}
-        <line
-          x1="7"
-          y1="0"
-          x2="7"
-          y2="1000"
-          className="stroke-dim-trace"
-          strokeWidth="2"
-          vectorEffect="non-scaling-stroke"
-        />
-        {/* Active trace (cyan, animated) — fully lit static line if
-            prefers-reduced-motion, scroll-linked + surge-reactive otherwise */}
+    <>
+      {/* Mobile: slim top progress bar — the old left-edge line sat too
+          close to text padding on small screens and visibly cut through
+          headlines/body copy. A top bar is a standard, unambiguous
+          scroll-progress pattern that never competes with content. */}
+      <div className="fixed top-0 left-0 right-0 z-40 h-[3px] md:hidden pointer-events-none bg-dim-trace/40">
         {prefersReducedMotion ? (
-          <line
-            x1="7"
-            y1="0"
-            x2="7"
-            y2="1000"
-            stroke="#0B5FFF"
-            strokeWidth="2"
-            vectorEffect="non-scaling-stroke"
-            style={{ filter: "drop-shadow(0 0 2px rgba(11, 95, 255, 0.5))" }}
+          <div
+            className="h-full w-full bg-aces-blue"
+            style={{ filter: "drop-shadow(0 0 4px rgba(11, 95, 255, 0.5))" }}
           />
         ) : (
-          <motion.line
-            x1="7"
-            y1="0"
-            x2="7"
-            y2="1000"
-            stroke="#0B5FFF"
-            vectorEffect="non-scaling-stroke"
-            animate={{ strokeWidth: surging ? 4 : 2 }}
-            transition={{ duration: 0.3 }}
+          <motion.div
+            className="h-full bg-aces-blue origin-left"
             style={{
-              pathLength,
+              scaleX: smoothProgress,
               filter: surging
                 ? "drop-shadow(0 0 8px #0B5FFF) drop-shadow(0 0 3px #0B5FFF)"
-                : "drop-shadow(0 0 2px rgba(11, 95, 255, 0.5))",
+                : "drop-shadow(0 0 4px rgba(11, 95, 255, 0.5))",
             }}
-            className="trace-glow"
           />
         )}
-        {/* Node dots live on each section itself via <TraceNode>, not
-            here — these used to be hardcoded at arbitrary fixed
-            positions that didn't correspond to real section boundaries. */}
-      </svg>
-    </div>
+      </div>
+
+      {/* Tablet/desktop: original left-edge vertical trace — kept where
+          section padding leaves it enough room to breathe. */}
+      <div className="hidden md:block fixed left-8 top-0 bottom-0 z-40 pointer-events-none">
+        <svg
+          width="24"
+          height="100%"
+          viewBox="0 0 24 1000"
+          preserveAspectRatio="none"
+          className="h-full w-6"
+        >
+          {/* Background trace (dimmed) — stroke-dim-trace tracks the
+              light/dark theme via CSS variables, unlike a hardcoded hex */}
+          <line
+            x1="12"
+            y1="0"
+            x2="12"
+            y2="1000"
+            className="stroke-dim-trace"
+            strokeWidth="2"
+            vectorEffect="non-scaling-stroke"
+          />
+          {/* Active trace (animated) — fully lit static line if
+              prefers-reduced-motion, scroll-linked + surge-reactive otherwise */}
+          {prefersReducedMotion ? (
+            <line
+              x1="12"
+              y1="0"
+              x2="12"
+              y2="1000"
+              stroke="#0B5FFF"
+              strokeWidth="2"
+              vectorEffect="non-scaling-stroke"
+              style={{ filter: "drop-shadow(0 0 4px rgba(11, 95, 255, 0.5))" }}
+            />
+          ) : (
+            <motion.line
+              x1="12"
+              y1="0"
+              x2="12"
+              y2="1000"
+              stroke="#0B5FFF"
+              vectorEffect="non-scaling-stroke"
+              animate={{ strokeWidth: surging ? 4 : 2 }}
+              transition={{ duration: 0.3 }}
+              style={{
+                pathLength,
+                filter: surging
+                  ? "drop-shadow(0 0 8px #0B5FFF) drop-shadow(0 0 3px #0B5FFF)"
+                  : "drop-shadow(0 0 4px rgba(11, 95, 255, 0.5))",
+              }}
+              className="trace-glow"
+            />
+          )}
+          {/* Node dots live on each section itself via <TraceNode>, not
+              here — these used to be hardcoded at arbitrary fixed
+              positions that didn't correspond to real section boundaries. */}
+        </svg>
+      </div>
+    </>
   );
 }
 
@@ -160,14 +187,10 @@ export function TraceNode({ id, children, className = "" }: TraceNodeProps) {
       transition={{ duration: 0.6, ease: "easeOut" }}
       onViewportEnter={() => setIsVisible(true)}
     >
-      {/* Active node indicator — aligned to the trace line's real x
-          position. The previous `-left-4`/`-left-8` values were negative
-          offsets from this element's own edge, which computed to a
-          position off the left of the viewport — silently clipped by
-          `overflow-x: hidden` on body, so these dots were never actually
-          visible on mobile. */}
+      {/* Active node indicator — only relevant alongside the tablet/desktop
+          vertical trace; mobile uses the top progress bar instead */}
       <div
-        className={`absolute left-[15px] md:left-11 top-1/2 -translate-x-1/2 -translate-y-1/2 w-3 h-3 rounded-full border-2 border-aces-blue transition-all duration-500 ${
+        className={`hidden md:block absolute md:-left-8 top-1/2 -translate-y-1/2 w-3 h-3 rounded-full border-2 border-aces-blue transition-all duration-500 ${
           isVisible ? "bg-aces-blue scale-100" : "bg-circuit-navy scale-75"
         }`}
         style={{
