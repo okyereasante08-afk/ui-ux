@@ -11,8 +11,8 @@ export interface EventItem {
 // here.
 export const upcomingEvents: EventItem[] = [
   {
-    id: "codefest-2025",
-    title: "CodeFest 2025",
+    id: "codefest-2026",
+    title: "CodeFest 2026",
     description: "Join us for a thrilling day of coding challenges, workshops, and networking with tech enthusiasts.",
     image: "/events/codefest-2025.jpg",
   },
