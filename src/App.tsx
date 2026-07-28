@@ -16,6 +16,7 @@ import { PWAProvider } from "./hooks/usePWA";
 import { ThemeProvider } from "./hooks/useTheme";
 import { MoreMenuProvider } from "./hooks/useMoreMenu";
 import AppSplash from "./components/AppSplash";
+import Journeys from "./pages/Journeys";
 
 function App() {
   return (
@@ -36,6 +37,7 @@ function App() {
                   <Route path="/marketplace" element={<Marketplace />} />
                   <Route path="/scholarships" element={<Scholarships />} />
                   <Route path="/courses" element={<Courses />} />
+                  <Route path="/journeys" element={<Journeys />} />
                   <Route path="/shop" element={<Shop />} />
                 </Routes>
               </AnimatePresence>

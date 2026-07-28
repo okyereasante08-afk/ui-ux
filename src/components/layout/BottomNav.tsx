@@ -1,10 +1,9 @@
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence, useScroll, useMotionValueEvent } from "framer-motion";
-import { Home, Calendar, Info, Menu, X, Users, GraduationCap, ShoppingBag } from "lucide-react";
+import { Home, Calendar, Info, Menu, X, Users, GraduationCap, ShoppingBag, Compass } from "lucide-react";
 import { Link, useLocation } from "react-router-dom";
 import { cn } from "@/lib/utils";
 import ThemeToggle from "@/components/ui/ThemeToggle";
-import { useMoreMenu } from "@/hooks/useMoreMenu";
 
 // Exactly 3 primary destinations + a menu toggle — everything else lives
 // in the grouped "More" sidebar rather than crowding the bottom bar.
@@ -41,11 +40,16 @@ const moreGroups = [
       { label: "ACES Shop", path: "/shop" },
     ],
   },
+  {
+    label: "For Judges",
+    icon: Compass,
+    links: [{ label: "Guided Journeys", path: "/journeys" }],
+  },
 ];
 
 export default function BottomNav() {
   const [hidden, setHidden] = useState(false);
-  const { isOpen: moreOpen, open: openMore, close: closeMore } = useMoreMenu();
+  const [moreOpen, setMoreOpen] = useState(false);
   const { scrollY } = useScroll();
   const location = useLocation();
 
@@ -60,8 +64,7 @@ export default function BottomNav() {
 
   useEffect(() => {
     setHidden(false);
-    closeMore();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
+    setMoreOpen(false);
   }, [location.pathname]);
 
   const isMoreActive = moreGroups.some((g) => g.links.some((l) => l.path === location.pathname));
@@ -74,7 +77,7 @@ export default function BottomNav() {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            onClick={closeMore}
+            onClick={() => setMoreOpen(false)}
             className="fixed inset-0 z-40 bg-black/60"
           />
         )}
@@ -94,7 +97,7 @@ export default function BottomNav() {
               <span className="font-mono text-xs uppercase tracking-widest text-muted-foreground">
                 menu
               </span>
-              <button onClick={closeMore} aria-label="Close menu">
+              <button onClick={() => setMoreOpen(false)} aria-label="Close menu">
                 <X className="h-5 w-5 text-foreground/70" />
               </button>
             </div>
@@ -119,7 +122,7 @@ export default function BottomNav() {
                         <Link
                           key={link.path}
                           to={link.path}
-                          onClick={closeMore}
+                          onClick={() => setMoreOpen(false)}
                           className={cn(
                             "rounded-lg border px-4 py-3 text-sm transition-colors",
                             isActive
@@ -175,7 +178,7 @@ export default function BottomNav() {
           })}
 
           <button
-            onClick={openMore}
+            onClick={() => setMoreOpen(true)}
             className="relative flex flex-col items-center justify-center w-16 h-full"
           >
             {isMoreActive && (
