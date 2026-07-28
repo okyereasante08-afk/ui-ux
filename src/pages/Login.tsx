@@ -36,6 +36,26 @@ export default function LoginPage() {
         description="Log in to manage your store on the ACES Marketplace."
       />
 
+      <motion.button
+        type="button"
+        onClick={() => {
+          setEmail("demo@aces.com");
+          setPassword("demo1234");
+        }}
+        initial={{ opacity: 0, y: 12 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.4, delay: 0.15 }}
+        className="mb-5 w-full rounded-lg border border-dashed border-aces-blue/25 bg-aces-blue/5 px-4 py-3 text-left transition-colors hover:border-aces-blue/40"
+      >
+        <p className="font-mono text-[10px] uppercase tracking-widest text-aces-blue/70">
+          Demo vendor account
+        </p>
+        <p className="mt-0.5 text-xs text-foreground/50">
+          Tap to fill in <span className="text-foreground/70">demo@aces.com</span> — see the
+          vendor dashboard without registering.
+        </p>
+      </motion.button>
+
       <motion.form
         initial={{ opacity: 0, y: 12 }}
         animate={{ opacity: 1, y: 0 }}
