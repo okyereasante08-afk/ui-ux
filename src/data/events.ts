@@ -17,16 +17,6 @@ export const upcomingEvents: EventItem[] = [
     image: "/events/codefest-2025.jpg",
   },
   {
-    id: "robotics-meeting",
-    title: "ACES Robotics Meeting",
-    description: "Explore the latest in robotics. Collaborate, build bots, and automate solutions with fellow members.",
-  },
-  {
-    id: "dinner-2025",
-    title: "ACES Dinner 2025",
-    description: "A night of fun, food, and fellowship. Connect with ACES members over an elegant dinner.",
-  },
-  {
     id: "hangout",
     title: "ACES Hangout",
     description: "Unwind with games, conversations, and chill vibes in this relaxed member-exclusive event.",
