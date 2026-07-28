@@ -1,9 +1,10 @@
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence, useScroll, useMotionValueEvent } from "framer-motion";
-import { Home, Calendar, Info, Menu, X, Users, GraduationCap, ShoppingBag, Compass } from "lucide-react";
-import { Link, useLocation } from "react-router-dom";
+import { Home, Calendar, Info, Menu, X, Users, GraduationCap, ShoppingBag, Compass, User, LogOut } from "lucide-react";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { cn } from "@/lib/utils";
 import ThemeToggle from "@/components/ui/ThemeToggle";
+import { useAuth } from "@/hooks/useAuth";
 
 // Exactly 3 primary destinations + a menu toggle — everything else lives
 // in the grouped "More" sidebar rather than crowding the bottom bar.
@@ -52,6 +53,8 @@ export default function BottomNav() {
   const [moreOpen, setMoreOpen] = useState(false);
   const { scrollY } = useScroll();
   const location = useLocation();
+  const navigate = useNavigate();
+  const { user, logout } = useAuth();
 
   useMotionValueEvent(scrollY, "change", (latest) => {
     const previous = scrollY.getPrevious() ?? 0;
@@ -104,6 +107,78 @@ export default function BottomNav() {
 
             <div className="px-5 pb-4">
               <ThemeToggle className="w-full justify-center" />
+            </div>
+
+            {/* Account — auth-aware, not part of moreGroups since its
+                content branches on login state rather than being a
+                fixed set of links. */}
+            <div className="px-5 pb-6">
+              <div className="mb-2 flex items-center gap-2 text-muted-foreground">
+                <User size={14} />
+                <span className="font-mono text-[11px] uppercase tracking-widest">Account</span>
+              </div>
+              {user ? (
+                <div className="flex flex-col gap-1.5">
+                  <div className="rounded-lg border border-border px-4 py-3">
+                    <p className="text-sm font-medium text-board-white">{user.name}</p>
+                    <p className="font-mono text-[10px] uppercase tracking-wider text-foreground/40">
+                      {user.role === "vendor" ? user.storeName ?? "Vendor" : "Shopper"}
+                    </p>
+                  </div>
+                  {user.role === "vendor" && (
+                    <Link
+                      to="/vendor-dashboard"
+                      onClick={() => setMoreOpen(false)}
+                      className={cn(
+                        "rounded-lg border px-4 py-3 text-sm transition-colors",
+                        location.pathname === "/vendor-dashboard"
+                          ? "border-aces-blue/40 text-aces-blue bg-aces-blue/5"
+                          : "border-border text-foreground/80 hover:border-aces-blue/30",
+                      )}
+                    >
+                      Vendor Dashboard
+                    </Link>
+                  )}
+                  <button
+                    onClick={() => {
+                      logout();
+                      setMoreOpen(false);
+                      navigate("/");
+                    }}
+                    className="flex items-center gap-2 rounded-lg border border-border px-4 py-3 text-sm text-foreground/60 transition-colors hover:border-red-500/40 hover:text-red-400"
+                  >
+                    <LogOut className="h-3.5 w-3.5" />
+                    Log out
+                  </button>
+                </div>
+              ) : (
+                <div className="flex flex-col gap-1.5">
+                  <Link
+                    to="/login"
+                    onClick={() => setMoreOpen(false)}
+                    className={cn(
+                      "rounded-lg border px-4 py-3 text-sm transition-colors",
+                      location.pathname === "/login"
+                        ? "border-aces-blue/40 text-aces-blue bg-aces-blue/5"
+                        : "border-border text-foreground/80 hover:border-aces-blue/30",
+                    )}
+                  >
+                    Log in
+                  </Link>
+                  <Link
+                    to="/register"
+                    onClick={() => setMoreOpen(false)}
+                    className={cn(
+                      "rounded-lg border px-4 py-3 text-sm transition-colors",
+                      location.pathname === "/register"
+                        ? "border-aces-blue/40 text-aces-blue bg-aces-blue/5"
+                        : "border-border text-foreground/80 hover:border-aces-blue/30",
+                    )}
+                  >
+                    Create account / Sell on ACES
+                  </Link>
+                </div>
+              )}
             </div>
 
             <nav className="flex flex-col gap-6 px-5 pb-8">

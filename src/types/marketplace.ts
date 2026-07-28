@@ -45,3 +45,24 @@ export interface VendorStats {
   ordersThisWeek: number;
   pendingOrders: number;
 }
+
+export type PaymentMethod = "mtn" | "telecel" | "airteltigo" | "card";
+
+export interface DeliveryDetails {
+  fullName: string;
+  phone: string;
+  hall: string; // KNUST hall/hostel or off-campus address
+  notes?: string;
+}
+
+export interface Order {
+  id: string;
+  lines: CartLine[];
+  subtotal: number;
+  deliveryFee: number;
+  total: number;
+  delivery: DeliveryDetails;
+  paymentMethod: PaymentMethod;
+  status: "paid";
+  createdAt: string;
+}

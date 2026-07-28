@@ -8,6 +8,7 @@ import Staff from "./pages/Staff";
 import Gallery from "./pages/Gallery";
 import Events from "./pages/Events";
 import Marketplace from "./pages/Marketplace";
+import Checkout from "./pages/Checkout";
 import Login from "./pages/Login";
 import Register from "./pages/Register";
 import VendorDashboard from "./pages/VendorDashboard";
@@ -19,6 +20,8 @@ import { TraceProvider } from "./components/TraceConnector";
 import BottomNav from "./components/layout/BottomNav";
 import { PWAProvider } from "./hooks/usePWA";
 import { ThemeProvider } from "./hooks/useTheme";
+import { MoreMenuProvider } from "./hooks/useMoreMenu";
+import AppSplash from "./components/AppSplash";
 import { seedDemoVendor } from "./lib/auth";
 
 function App() {
@@ -35,27 +38,31 @@ function App() {
     <ThemeProvider>
       <PWAProvider>
         <TraceProvider>
-          <div className="relative min-h-screen bg-circuit-navy">
-            <AnimatePresence mode="wait">
-              <Routes>
-                <Route path="/" element={<Home />} />
-                <Route path="/about" element={<About />} />
-                <Route path="/executives" element={<Executives />} />
-                <Route path="/department" element={<Staff />} />
-                <Route path="/gallery" element={<Gallery />} />
-                <Route path="/events" element={<Events />} />
-                <Route path="/marketplace" element={<Marketplace />} />
-                <Route path="/login" element={<Login />} />
-                <Route path="/register" element={<Register />} />
-                <Route path="/vendor-dashboard" element={<VendorDashboard />} />
-                <Route path="/scholarships" element={<Scholarships />} />
-                <Route path="/courses" element={<Courses />} />
-                <Route path="/shop" element={<Shop />} />
-                <Route path="/journeys" element={<Journeys />} />
-              </Routes>
-            </AnimatePresence>
-            <BottomNav />
-          </div>
+          <MoreMenuProvider>
+            <AppSplash />
+            <div className="relative min-h-screen bg-circuit-navy">
+              <AnimatePresence mode="wait">
+                <Routes>
+                  <Route path="/" element={<Home />} />
+                  <Route path="/about" element={<About />} />
+                  <Route path="/executives" element={<Executives />} />
+                  <Route path="/department" element={<Staff />} />
+                  <Route path="/gallery" element={<Gallery />} />
+                  <Route path="/events" element={<Events />} />
+                  <Route path="/marketplace" element={<Marketplace />} />
+                  <Route path="/checkout" element={<Checkout />} />
+                  <Route path="/login" element={<Login />} />
+                  <Route path="/register" element={<Register />} />
+                  <Route path="/vendor-dashboard" element={<VendorDashboard />} />
+                  <Route path="/scholarships" element={<Scholarships />} />
+                  <Route path="/courses" element={<Courses />} />
+                  <Route path="/shop" element={<Shop />} />
+                  <Route path="/journeys" element={<Journeys />} />
+                </Routes>
+              </AnimatePresence>
+              <BottomNav />
+            </div>
+          </MoreMenuProvider>
         </TraceProvider>
       </PWAProvider>
     </ThemeProvider>

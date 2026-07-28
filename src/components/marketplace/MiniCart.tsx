@@ -1,8 +1,10 @@
 import { useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
+import { useNavigate } from "react-router-dom";
 import { X, Minus, Plus, ShoppingBag } from "lucide-react";
 import { useCart } from "@/hooks/useCart";
 import { getProductById } from "@/lib/mockProducts";
+import ProductImage from "@/components/marketplace/ProductImage";
 
 interface MiniCartProps {
   open: boolean;
@@ -11,6 +13,7 @@ interface MiniCartProps {
 
 export default function MiniCart({ open, onClose }: MiniCartProps) {
   const { lines, updateQuantity, remove } = useCart();
+  const navigate = useNavigate();
 
   useEffect(() => {
     document.body.style.overflow = open ? "hidden" : "";
@@ -68,11 +71,13 @@ export default function MiniCart({ open, onClose }: MiniCartProps) {
                 <div className="flex flex-col gap-4">
                   {items.map(({ line, product }) => (
                     <div key={line.productId} className="flex gap-3">
-                      <img
-                        src={product!.image}
-                        alt={product!.title}
-                        className="h-16 w-16 shrink-0 rounded-md object-cover"
-                      />
+                      <div className="h-16 w-16 shrink-0">
+                        <ProductImage
+                          src={product!.image}
+                          alt={product!.title}
+                          className="h-16 w-16 rounded-md object-cover"
+                        />
+                      </div>
                       <div className="flex flex-1 flex-col justify-between min-w-0">
                         <div className="flex items-start justify-between gap-2">
                           <p className="line-clamp-2 text-sm font-medium text-board-white">
@@ -125,7 +130,13 @@ export default function MiniCart({ open, onClose }: MiniCartProps) {
                     GHS {subtotal.toFixed(2)}
                   </span>
                 </div>
-                <button className="w-full rounded-full bg-aces-blue py-3 text-sm font-semibold text-white active:scale-[0.98] transition-transform">
+                <button
+                  onClick={() => {
+                    onClose();
+                    navigate("/checkout");
+                  }}
+                  className="w-full rounded-full bg-aces-blue py-3 text-sm font-semibold text-white active:scale-[0.98] transition-transform"
+                >
                   Checkout
                 </button>
               </div>

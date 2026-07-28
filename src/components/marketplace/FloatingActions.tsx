@@ -1,6 +1,8 @@
 import { motion } from "framer-motion";
-import { Search, ShoppingBag } from "lucide-react";
+import { useNavigate } from "react-router-dom";
+import { Search, ShoppingBag, User } from "lucide-react";
 import { useCart } from "@/hooks/useCart";
+import { useAuth } from "@/hooks/useAuth";
 
 interface FloatingActionsProps {
   onCartClick: () => void;
@@ -13,12 +15,37 @@ interface FloatingActionsProps {
   group pointing here, so duplicating Cart/Search there would be
   redundant. These sit above the existing bottom nav's height so they
   don't get covered by it.
+
+  The account button is the fix for "I can't find how to reach
+  login/vendor-dashboard" — previously those routes existed but nothing
+  in the UI pointed at them. Logged-out -> /login. Logged-in vendor ->
+  /vendor-dashboard directly, since that's the page a vendor actually
+  wants from here.
 */
 export default function FloatingActions({ onCartClick, onSearchClick }: FloatingActionsProps) {
   const { count } = useCart();
+  const { user } = useAuth();
+  const navigate = useNavigate();
 
   return (
     <div className="fixed bottom-24 right-4 z-20 flex flex-col gap-2">
+      <motion.button
+        initial={{ opacity: 0, scale: 0.8 }}
+        animate={{ opacity: 1, scale: 1 }}
+        transition={{ duration: 0.3, delay: 0.05 }}
+        onClick={() => navigate(user?.role === "vendor" ? "/vendor-dashboard" : "/login")}
+        aria-label={user ? `Account: ${user.name}` : "Log in"}
+        className="flex h-11 w-11 items-center justify-center rounded-full border border-border bg-card/90 text-foreground/70 shadow-lg backdrop-blur-sm transition-colors hover:border-aces-blue/40 hover:text-aces-blue"
+      >
+        {user ? (
+          <span className="font-mono text-xs font-bold text-aces-blue">
+            {user.name.charAt(0).toUpperCase()}
+          </span>
+        ) : (
+          <User className="h-4 w-4" />
+        )}
+      </motion.button>
+
       <motion.button
         initial={{ opacity: 0, scale: 0.8 }}
         animate={{ opacity: 1, scale: 1 }}
