@@ -1,7 +1,6 @@
 import { useState } from "react";
 import { motion, AnimatePresence, useScroll, useTransform, useReducedMotion } from "framer-motion";
 import PageHeader from "@/components/ui/PageHeader";
-import LogoTrace from "@/components/about/LogoTrace";
 import MissionTab from "@/components/about/MissionTab";
 import VisionTab from "@/components/about/VisionTab";
 import LogoTab from "@/components/about/LogoTab";
@@ -13,7 +12,10 @@ import { cn } from "@/lib/utils";
   Confirm with the org before final ship in case wording has changed.
 
   Background photo (CodeFest VR demo) is scoped to this page only, per
-  request — not a site-wide pattern.
+  request — not a site-wide pattern. The logo trace-in intro now lives at
+  the app level (AppSplash, plays once per session on site entry) rather
+  than replaying on every visit to this page — LogoTab still replays it
+  on tap.
 */
 
 const tabs = [
@@ -26,7 +28,6 @@ type TabId = (typeof tabs)[number]["id"];
 
 export default function About() {
   const [activeTab, setActiveTab] = useState<TabId>("mission");
-  const [introDone, setIntroDone] = useState(false);
   const prefersReducedMotion = useReducedMotion();
 
   const { scrollY } = useScroll();
@@ -34,20 +35,6 @@ export default function About() {
 
   return (
     <div className="relative min-h-screen bg-background">
-      {/* Intro overlay — the logo traces itself in once when the page opens */}
-      <AnimatePresence>
-        {!introDone && !prefersReducedMotion && (
-          <motion.div
-            initial={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            transition={{ duration: 0.5, delay: 0.3 }}
-            className="fixed inset-0 z-50 flex items-center justify-center bg-circuit-navy"
-          >
-            <LogoTrace size={120} onComplete={() => setTimeout(() => setIntroDone(true), 250)} />
-          </motion.div>
-        )}
-      </AnimatePresence>
-
       {/* Background photo, scoped to this page — fades into bg-background
           both via a fixed gradient and a scroll-linked opacity fade, so it
           blends into the text rather than cutting off hard. */}

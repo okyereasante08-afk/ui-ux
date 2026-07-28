@@ -10,12 +10,12 @@ import Marketplace from "./pages/Marketplace";
 import Scholarships from "./pages/Scholarships";
 import Courses from "./pages/Courses";
 import Shop from "./pages/Shop";
-import ClubDetail from "./pages/ClubDetail";
 import { TraceProvider } from "./components/TraceConnector";
 import BottomNav from "./components/layout/BottomNav";
 import { PWAProvider } from "./hooks/usePWA";
 import { ThemeProvider } from "./hooks/useTheme";
 import { MoreMenuProvider } from "./hooks/useMoreMenu";
+import AppSplash from "./components/AppSplash";
 
 function App() {
   return (
@@ -23,7 +23,8 @@ function App() {
       <PWAProvider>
         <TraceProvider>
           <MoreMenuProvider>
-            <div className="relative min-h-screen bg-background">
+            <AppSplash />
+            <div className="relative min-h-screen bg-circuit-navy">
               <AnimatePresence mode="wait">
                 <Routes>
                   <Route path="/" element={<Home />} />
@@ -36,7 +37,6 @@ function App() {
                   <Route path="/scholarships" element={<Scholarships />} />
                   <Route path="/courses" element={<Courses />} />
                   <Route path="/shop" element={<Shop />} />
-                  <Route path="/clubs/:slug" element={<ClubDetail />} />
                 </Routes>
               </AnimatePresence>
               <BottomNav />

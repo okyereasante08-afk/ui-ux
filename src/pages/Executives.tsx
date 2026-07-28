@@ -3,28 +3,40 @@ import { motion, AnimatePresence } from "framer-motion";
 import { ChevronDown } from "lucide-react";
 import PageHeader from "@/components/ui/PageHeader";
 import EmptyState from "@/components/ui/EmptyState";
+import ExecutiveCard, { type Executive } from "@/components/executives/ExecutiveCard";
+import ExecutiveModal from "@/components/executives/ExecutiveModal";
 
 /*
   Content verified via live fetch of acesknust.com/executives.
   Live site's year dropdown has nothing selected by default, reading as
   dead on first load — defaults to the first year here as a fix.
+
+  PLACEHOLDER DATA below for 2025/2026 — names, bios, and social links are
+  all stand-ins to preview the card/modal design. Swap for real executive
+  profiles (photo, name, role, bio, actual social URLs) before ship.
+  Previous years are left as honest empty states since there's no real
+  data for them yet either.
 */
 
 const years = ["2025/2026", "2024/2025", "2023/2024"];
 
-interface Executive {
-  id: string;
-  name: string;
-  role: string;
-}
+const placeholderExecutives: Executive[] = [
+  { id: "1", name: "Full Name", role: "President", bio: "Placeholder bio — add a short description of what this executive does once real profiles are available.", socials: { linkedin: "#", whatsapp: "#", instagram: "#" } },
+  { id: "2", name: "Full Name", role: "Vice President", bio: "Placeholder bio — add a short description of what this executive does once real profiles are available.", socials: { linkedin: "#", whatsapp: "#", instagram: "#" } },
+  { id: "3", name: "Full Name", role: "General Secretary", bio: "Placeholder bio — add a short description of what this executive does once real profiles are available.", socials: { linkedin: "#", whatsapp: "#", snapchat: "#" } },
+  { id: "4", name: "Full Name", role: "Financial Secretary", bio: "Placeholder bio — add a short description of what this executive does once real profiles are available.", socials: { linkedin: "#", whatsapp: "#", snapchat: "#" } },
+  { id: "5", name: "Full Name", role: "Public Relations Officer", bio: "Placeholder bio — add a short description of what this executive does once real profiles are available.", socials: { linkedin: "#", instagram: "#", snapchat: "#" } },
+  { id: "6", name: "Full Name", role: "Organizing Secretary", bio: "Placeholder bio — add a short description of what this executive does once real profiles are available.", socials: { linkedin: "#", whatsapp: "#" } },
+];
 
 const executivesByYear: Record<string, Executive[]> = {
-  "2025/2026": [],
+  "2025/2026": placeholderExecutives,
 };
 
 export default function Executives() {
   const [year, setYear] = useState(years[0]);
   const [open, setOpen] = useState(false);
+  const [selected, setSelected] = useState<Executive | null>(null);
   const executives = executivesByYear[year] ?? [];
 
   return (
@@ -73,7 +85,20 @@ export default function Executives() {
           title={`No executives added yet for ${year}`}
           description="TODO: wire in real executive profiles (photo, name, role) for this academic year."
         />
-      ) : null}
+      ) : (
+        <div className="grid grid-cols-2 sm:grid-cols-3 gap-4">
+          {executives.map((exec, i) => (
+            <ExecutiveCard
+              key={exec.id}
+              executive={exec}
+              index={i}
+              onClick={() => setSelected(exec)}
+            />
+          ))}
+        </div>
+      )}
+
+      <ExecutiveModal executive={selected} onClose={() => setSelected(null)} />
     </div>
   );
 }
