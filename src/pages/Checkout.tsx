@@ -6,7 +6,7 @@ import PageHeader from "@/components/ui/PageHeader";
 import CurrentPulseButton from "@/components/ui/CurrentPulseButton";
 import { useCart } from "@/hooks/useCart";
 import { getProductById } from "@/lib/mockProducts";
-import { saveOrder } from "@/lib/checkout";
+import { createOrder} from "@/lib/checkout";
 import { PaymentMethod, DeliveryDetails, Order } from "@/types/marketplace";
 import { cn } from "@/lib/utils";
 
@@ -81,7 +81,7 @@ export default function Checkout() {
       status: "paid",
       createdAt: new Date().toISOString(),
     };
-    saveOrder(order);
+    createOrder(lines, delivery, method!);
     setCompletedOrder(order);
     clear();
     setStep("success");

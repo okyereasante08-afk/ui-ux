@@ -11,10 +11,20 @@ export interface EventItem {
 // here.
 export const upcomingEvents: EventItem[] = [
   {
-    id: "codefest-2026",
-    title: "CodeFest 2026",
+    id: "codefest-2025",
+    title: "CodeFest 2025",
     description: "Join us for a thrilling day of coding challenges, workshops, and networking with tech enthusiasts.",
     image: "/events/codefest-2025.jpg",
+  },
+  {
+    id: "robotics-meeting",
+    title: "ACES Robotics Meeting",
+    description: "Explore the latest in robotics. Collaborate, build bots, and automate solutions with fellow members.",
+  },
+  {
+    id: "dinner-2025",
+    title: "ACES Dinner 2025",
+    description: "A night of fun, food, and fellowship. Connect with ACES members over an elegant dinner.",
   },
   {
     id: "hangout",
@@ -37,5 +47,18 @@ export const pastEvents: EventItem[] = [
     title: "ACES Robotics Meeting",
     description: "Members collaborating hands-on at a past robotics meeting.",
     image: "/events/robotics-meeting.webp",
+  },
+  // Example entries demonstrating the "just drop photos in a folder"
+  // workflow — no photos added yet, so their gallery starts empty. Add
+  // real copy once these are real, confirmed events.
+  {
+    id: "rep-your-school",
+    title: "Rep Your School",
+    description: "Placeholder description — replace with the real event details.",
+  },
+  {
+    id: "rep-your-jersey",
+    title: "Rep Your Jersey",
+    description: "Placeholder description — replace with the real event details.",
   },
 ];
