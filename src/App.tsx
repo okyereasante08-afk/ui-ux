@@ -18,6 +18,9 @@ import { PWAProvider } from "./hooks/usePWA";
 import { ThemeProvider } from "./hooks/useTheme";
 import { MoreMenuProvider } from "./hooks/useMoreMenu";
 import Checkout from "./pages/Checkout";
+import Login from "./pages/Login";
+import Register from "./pages/Register";
+import VendorDashboard from "./pages/VendorDashboard";
 
 function App() {
   return (
@@ -40,6 +43,9 @@ function App() {
                   <Route path="/shop" element={<Shop />} />
                   <Route path="/clubs/:slug" element={<ClubDetail />} />
                   <Route path="/checkout" element={<Checkout />} />
+                  <Route path="/login" element={<Login />} />
+                  <Route path="/register" element={<Register />} />
+                  <Route path="/vendor-dashboard" element={<VendorDashboard />} />
                   <Route path="/events/:slug" element={<EventDetail />} />
                 </Routes>
               </AnimatePresence>
