@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence, useScroll, useMotionValueEvent } from "framer-motion";
-import { Home, Calendar, Info, Menu, X, Users, GraduationCap, ShoppingBag } from "lucide-react";
+import { Home, Calendar, Info, Menu, X, Users, GraduationCap, ShoppingBag, UserCircle } from "lucide-react";
 import { Link, useLocation } from "react-router-dom";
 import { cn } from "@/lib/utils";
 import ThemeToggle from "@/components/ui/ThemeToggle";
@@ -39,6 +39,16 @@ const moreGroups = [
     links: [
       { label: "Marketplace", path: "/marketplace" },
       { label: "ACES Shop", path: "/shop" },
+    ],
+  },
+  {
+    // Paths below are guesses (/login, /register, /create-account) —
+    // adjust to match whatever you actually wired these up as.
+    label: "Account",
+    icon: UserCircle,
+    links: [
+      { label: "Login", path: "/login" },
+      { label: "Register", path: "/register" },
     ],
   },
 ];
