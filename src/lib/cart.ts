@@ -11,6 +11,18 @@ function isBrowser() {
 
 // ---------- Cart ----------
 
+/*
+  Cart lines are matched by productId + selectedVariants together, not
+  productId alone — "Kente Bow Tie in Red" and "Kente Bow Tie in Blue"
+  are different lines that shouldn't merge their quantities. This key
+  function is the single source of truth for "are these the same line."
+*/
+function lineKey(productId: string, selectedVariants?: Record<string, string>): string {
+  if (!selectedVariants || Object.keys(selectedVariants).length === 0) return productId;
+  const sorted = Object.entries(selectedVariants).sort(([a], [b]) => a.localeCompare(b));
+  return `${productId}::${sorted.map(([k, v]) => `${k}=${v}`).join(",")}`;
+}
+
 export function getCart(): CartLine[] {
   if (!isBrowser()) return [];
   try {
@@ -26,31 +38,40 @@ function saveCart(lines: CartLine[]) {
   window.dispatchEvent(new Event(CART_EVENT));
 }
 
-export function addToCart(productId: string, quantity = 1) {
+export function addToCart(productId: string, quantity = 1, selectedVariants?: Record<string, string>) {
   if (!isBrowser()) return;
   const lines = getCart();
-  const existing = lines.find((l) => l.productId === productId);
+  const key = lineKey(productId, selectedVariants);
+  const existing = lines.find((l) => lineKey(l.productId, l.selectedVariants) === key);
   if (existing) {
     existing.quantity += quantity;
     saveCart([...lines]);
   } else {
-    saveCart([...lines, { productId, quantity }]);
+    saveCart([...lines, { productId, quantity, selectedVariants }]);
   }
 }
 
-export function updateCartQuantity(productId: string, quantity: number) {
+export function updateCartQuantity(
+  productId: string,
+  quantity: number,
+  selectedVariants?: Record<string, string>,
+) {
   if (!isBrowser()) return;
   const lines = getCart();
+  const key = lineKey(productId, selectedVariants);
   if (quantity <= 0) {
-    saveCart(lines.filter((l) => l.productId !== productId));
+    saveCart(lines.filter((l) => lineKey(l.productId, l.selectedVariants) !== key));
     return;
   }
-  saveCart(lines.map((l) => (l.productId === productId ? { ...l, quantity } : l)));
+  saveCart(
+    lines.map((l) => (lineKey(l.productId, l.selectedVariants) === key ? { ...l, quantity } : l)),
+  );
 }
 
-export function removeFromCart(productId: string) {
+export function removeFromCart(productId: string, selectedVariants?: Record<string, string>) {
   if (!isBrowser()) return;
-  saveCart(getCart().filter((l) => l.productId !== productId));
+  const key = lineKey(productId, selectedVariants);
+  saveCart(getCart().filter((l) => lineKey(l.productId, l.selectedVariants) !== key));
 }
 
 export function clearCart() {

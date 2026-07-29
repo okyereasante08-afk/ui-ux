@@ -1,8 +1,10 @@
 import { motion } from "framer-motion";
+import { useNavigate } from "react-router-dom";
 import { Heart, Star, ShoppingBag } from "lucide-react";
 import { Product } from "@/types/marketplace";
 import { useCart, useWishlist } from "@/hooks/useCart";
 import { cn } from "@/lib/utils";
+import ProductImage from "@/components/marketplace/ProductImage";
 
 interface ProductCardProps {
   product: Product;
@@ -13,8 +15,11 @@ interface ProductCardProps {
 export default function ProductCard({ product, variant = "grid", index = 0 }: ProductCardProps) {
   const { add } = useCart();
   const { isWishlisted, toggle } = useWishlist();
+  const navigate = useNavigate();
   const wishlisted = isWishlisted(product.id);
   const onSale = product.compareAtPrice && product.compareAtPrice > product.price;
+
+  const goToDetail = () => navigate(`/marketplace/product/${product.id}`);
 
   const handleWishlist = (e: React.MouseEvent) => {
     e.preventDefault();
@@ -39,10 +44,14 @@ export default function ProductCard({ product, variant = "grid", index = 0 }: Pr
     return (
       <motion.div
         {...motionProps}
-        className="group flex gap-3 rounded-lg border border-foreground/10 bg-foreground/[0.03] p-3 transition-colors duration-300 hover:border-aces-blue/30"
+        onClick={goToDetail}
+        role="button"
+        tabIndex={0}
+        onKeyDown={(e) => e.key === "Enter" && goToDetail()}
+        className="group flex cursor-pointer gap-3 rounded-lg border border-foreground/10 bg-foreground/[0.03] p-3 transition-colors duration-300 hover:border-aces-blue/30"
       >
-        <div className="relative shrink-0">
-          <img
+        <div className="relative h-24 w-24 shrink-0">
+          <ProductImage
             src={product.image}
             alt={product.title}
             className="h-24 w-24 rounded-md object-cover"
@@ -109,14 +118,17 @@ export default function ProductCard({ product, variant = "grid", index = 0 }: Pr
   return (
     <motion.div
       {...motionProps}
-      className="group relative flex flex-col overflow-hidden rounded-lg border border-foreground/10 bg-foreground/[0.03] transition-colors duration-300 hover:border-aces-blue/30"
+      onClick={goToDetail}
+      role="button"
+      tabIndex={0}
+      onKeyDown={(e) => e.key === "Enter" && goToDetail()}
+      className="group relative flex cursor-pointer flex-col overflow-hidden rounded-lg border border-foreground/10 bg-foreground/[0.03] transition-colors duration-300 hover:border-aces-blue/30"
     >
       <div className="relative aspect-square w-full overflow-hidden bg-foreground/5">
-        <img
+        <ProductImage
           src={product.image}
           alt={product.title}
           className="h-full w-full object-cover"
-          loading="lazy"
         />
         {onSale && (
           <span className="absolute left-2 top-2 rounded bg-aces-blue px-2 py-0.5 font-mono text-[10px] uppercase tracking-wider text-white">

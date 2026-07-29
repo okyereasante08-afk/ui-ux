@@ -4,6 +4,7 @@ import { useNavigate } from "react-router-dom";
 import { X, Minus, Plus, ShoppingBag } from "lucide-react";
 import { useCart } from "@/hooks/useCart";
 import { getProductById } from "@/lib/mockProducts";
+import { getLineUnitPrice, getLineVariantSummary, getLineKey } from "@/lib/pricing";
 import ProductImage from "@/components/marketplace/ProductImage";
 
 interface MiniCartProps {
@@ -27,7 +28,7 @@ export default function MiniCart({ open, onClose }: MiniCartProps) {
     .filter((entry) => entry.product);
 
   const subtotal = items.reduce(
-    (sum, { line, product }) => sum + line.quantity * (product?.price ?? 0),
+    (sum, { line, product }) => sum + line.quantity * getLineUnitPrice(product!, line),
     0,
   );
 
@@ -70,7 +71,7 @@ export default function MiniCart({ open, onClose }: MiniCartProps) {
               ) : (
                 <div className="flex flex-col gap-4">
                   {items.map(({ line, product }) => (
-                    <div key={line.productId} className="flex gap-3">
+                    <div key={getLineKey(line)} className="flex gap-3">
                       <div className="h-16 w-16 shrink-0">
                         <ProductImage
                           src={product!.image}
@@ -80,11 +81,18 @@ export default function MiniCart({ open, onClose }: MiniCartProps) {
                       </div>
                       <div className="flex flex-1 flex-col justify-between min-w-0">
                         <div className="flex items-start justify-between gap-2">
-                          <p className="line-clamp-2 text-sm font-medium text-board-white">
-                            {product!.title}
-                          </p>
+                          <div className="min-w-0">
+                            <p className="line-clamp-2 text-sm font-medium text-board-white">
+                              {product!.title}
+                            </p>
+                            {getLineVariantSummary(product!, line) && (
+                              <p className="mt-0.5 text-xs text-foreground/40">
+                                {getLineVariantSummary(product!, line)}
+                              </p>
+                            )}
+                          </div>
                           <button
-                            onClick={() => remove(line.productId)}
+                            onClick={() => remove(line.productId, line.selectedVariants)}
                             aria-label="Remove item"
                             className="shrink-0 text-foreground/40 hover:text-aces-blue"
                           >
@@ -93,11 +101,11 @@ export default function MiniCart({ open, onClose }: MiniCartProps) {
                         </div>
                         <div className="flex items-center justify-between">
                           <span className="text-sm font-bold text-board-white">
-                            GHS {(product!.price * line.quantity).toFixed(2)}
+                            GHS {(getLineUnitPrice(product!, line) * line.quantity).toFixed(2)}
                           </span>
                           <div className="flex items-center gap-2 rounded-full border border-border px-2 py-1">
                             <button
-                              onClick={() => updateQuantity(line.productId, line.quantity - 1)}
+                              onClick={() => updateQuantity(line.productId, line.quantity - 1, line.selectedVariants)}
                               aria-label="Decrease quantity"
                             >
                               <Minus className="h-3 w-3 text-foreground/60" />
@@ -106,7 +114,7 @@ export default function MiniCart({ open, onClose }: MiniCartProps) {
                               {line.quantity}
                             </span>
                             <button
-                              onClick={() => updateQuantity(line.productId, line.quantity + 1)}
+                              onClick={() => updateQuantity(line.productId, line.quantity + 1, line.selectedVariants)}
                               aria-label="Increase quantity"
                             >
                               <Plus className="h-3 w-3 text-foreground/60" />

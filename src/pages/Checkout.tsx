@@ -6,7 +6,8 @@ import PageHeader from "@/components/ui/PageHeader";
 import CurrentPulseButton from "@/components/ui/CurrentPulseButton";
 import { useCart } from "@/hooks/useCart";
 import { getProductById } from "@/lib/mockProducts";
-import { createOrder} from "@/lib/checkout";
+import { saveOrder } from "@/lib/checkout";
+import { getLineUnitPrice, getLineKey } from "@/lib/pricing";
 import { PaymentMethod, DeliveryDetails, Order } from "@/types/marketplace";
 import { cn } from "@/lib/utils";
 
@@ -52,7 +53,7 @@ export default function Checkout() {
     [lines],
   );
 
-  const subtotal = items.reduce((sum, { line, product }) => sum + line.quantity * (product?.price ?? 0), 0);
+  const subtotal = items.reduce((sum, { line, product }) => sum + line.quantity * getLineUnitPrice(product!, line), 0);
   const total = subtotal + (items.length > 0 ? DELIVERY_FEE : 0);
 
   const deliveryValid = delivery.fullName.trim() && delivery.phone.trim() && delivery.hall.trim();
@@ -81,7 +82,7 @@ export default function Checkout() {
       status: "paid",
       createdAt: new Date().toISOString(),
     };
-    createOrder(lines, delivery, method!);
+    saveOrder(order);
     setCompletedOrder(order);
     clear();
     setStep("success");
@@ -454,7 +455,10 @@ function OrderSummary({
   deliveryFee,
   total,
 }: {
-  items: { line: { productId: string; quantity: number }; product: ReturnType<typeof getProductById> }[];
+  items: {
+    line: { productId: string; quantity: number; selectedVariants?: Record<string, string> };
+    product: ReturnType<typeof getProductById>;
+  }[];
   subtotal: number;
   deliveryFee: number;
   total: number;
@@ -466,11 +470,13 @@ function OrderSummary({
       </p>
       <div className="flex flex-col gap-2">
         {items.map(({ line, product }) => (
-          <div key={line.productId} className="flex items-center justify-between text-sm">
+          <div key={getLineKey(line)} className="flex items-center justify-between text-sm">
             <span className="text-foreground/70">
               {product!.title} <span className="text-foreground/30">×{line.quantity}</span>
             </span>
-            <span className="text-board-white">GHS {(product!.price * line.quantity).toFixed(2)}</span>
+            <span className="text-board-white">
+              GHS {(getLineUnitPrice(product!, line) * line.quantity).toFixed(2)}
+            </span>
           </div>
         ))}
       </div>
