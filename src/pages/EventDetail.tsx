@@ -48,7 +48,7 @@ export default function EventDetail() {
         <p className="font-mono text-xs text-foreground/40 uppercase tracking-widest mb-4">
           gallery // {gallery.length} photo{gallery.length === 1 ? "" : "s"}
         </p>
-        <OrbitGallery images={gallery} />
+        <OrbitGallery items={gallery.map((src, i) => ({ id: `${event.id}-${i}`, src }))} />
       </motion.div>
     </div>
   );

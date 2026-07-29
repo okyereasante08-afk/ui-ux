@@ -21,6 +21,7 @@ import Checkout from "./pages/Checkout";
 import Login from "./pages/Login";
 import Register from "./pages/Register";
 import VendorDashboard from "./pages/VendorDashboard";
+import AppSplash from "./components/AppSplash";
 
 function App() {
   return (
@@ -28,7 +29,8 @@ function App() {
       <PWAProvider>
         <TraceProvider>
           <MoreMenuProvider>
-            <div className="relative min-h-screen bg-background">
+            <AppSplash />
+            <div className="relative min-h-screen bg-circuit-navy">
               <AnimatePresence mode="wait">
                 <Routes>
                   <Route path="/" element={<Home />} />
@@ -41,7 +43,7 @@ function App() {
                   <Route path="/scholarships" element={<Scholarships />} />
                   <Route path="/courses" element={<Courses />} />
                   <Route path="/shop" element={<Shop />} />
-                  <Route path="/clubs/:slug" element={<ClubDetail />} />
+                   <Route path="/clubs/:slug" element={<ClubDetail />} />
                   <Route path="/checkout" element={<Checkout />} />
                   <Route path="/login" element={<Login />} />
                   <Route path="/register" element={<Register />} />
