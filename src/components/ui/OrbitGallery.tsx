@@ -3,7 +3,7 @@ import { useMotionValue, motion, animate, useReducedMotion, type AnimationPlayba
 import { ChevronLeft, ChevronRight, ImageOff } from "lucide-react";
 
 const ITEM_SIZE = 160;
-const IDLE_SECONDS_PER_REVOLUTION = 18;
+const IDLE_SECONDS_PER_REVOLUTION = 45;
 
 export interface OrbitItem {
   id: string;
