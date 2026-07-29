@@ -51,7 +51,7 @@ export default function EventsSection() {
               <div className="p-5">
                 <div className="mb-4">
                   <span className="font-mono text-xs text-foreground/30 uppercase tracking-wider bg-foreground/5 px-2 py-1 rounded">
-                    Date TBD
+                    {event.id}
                   </span>
                 </div>
 

@@ -11,8 +11,8 @@ export interface EventItem {
 // here.
 export const upcomingEvents: EventItem[] = [
   {
-    id: "codefest-2025",
-    title: "CodeFest 2025",
+    id: "codefest-2026",
+    title: "CodeFest 2026",
     description: "Join us for a thrilling day of coding challenges, workshops, and networking with tech enthusiasts.",
     image: "/events/codefest-2025.jpg",
   },
@@ -20,16 +20,13 @@ export const upcomingEvents: EventItem[] = [
     id: "robotics-meeting",
     title: "ACES Robotics Meeting",
     description: "Explore the latest in robotics. Collaborate, build bots, and automate solutions with fellow members.",
-  },
-  {
-    id: "dinner-2025",
-    title: "ACES Dinner 2025",
-    description: "A night of fun, food, and fellowship. Connect with ACES members over an elegant dinner.",
+    image: "/events/robotics-meeting.jpg",
   },
   {
     id: "hangout",
     title: "ACES Hangout",
     description: "Unwind with games, conversations, and chill vibes in this relaxed member-exclusive event.",
+    image:"/events/aces-hangout.png",
   },
 ];
 
@@ -54,11 +51,13 @@ export const pastEvents: EventItem[] = [
   {
     id: "rep-your-school",
     title: "Rep Your School",
-    description: "Placeholder description — replace with the real event details.",
+    description: "Members boldy representing their respective alma-mater",
+    image:"/events/rep-sch.png",
   },
   {
     id: "rep-your-jersey",
     title: "Rep Your Jersey",
-    description: "Placeholder description — replace with the real event details.",
+    description: "Boldy show your support for your favourite sports team",
+     image:"/events/rep-jersey/lpool.png"
   },
 ];

@@ -46,7 +46,7 @@ export default function Events() {
             )}
             <div className="p-5">
               <span className="font-mono text-[10px] uppercase tracking-wider bg-foreground/5 text-foreground/40 px-2 py-1 rounded">
-                {tab === "upcoming" ? "Date TBD" : "Past"}
+                {tab === "upcoming" ? "COMING SOON" : "Past"}
               </span>
               <h3 className="mt-3 text-sm font-heading font-bold text-foreground">{event.title}</h3>
               <p className="mt-1 text-xs text-foreground/50 leading-relaxed">{event.description}</p>
