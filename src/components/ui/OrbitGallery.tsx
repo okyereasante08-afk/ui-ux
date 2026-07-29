@@ -1,7 +1,9 @@
-import { useMotionValue, motion, animate } from "framer-motion";
+import { useEffect, useRef } from "react";
+import { useMotionValue, motion, animate, useReducedMotion, type AnimationPlaybackControls } from "framer-motion";
 import { ChevronLeft, ChevronRight, ImageOff } from "lucide-react";
 
 const ITEM_SIZE = 160;
+const IDLE_SECONDS_PER_REVOLUTION = 18;
 
 export interface OrbitItem {
   id: string;
@@ -16,18 +18,50 @@ interface OrbitGalleryProps {
 
 export function OrbitGallery({ items }: OrbitGalleryProps) {
   const rotateY = useMotionValue(0);
+  const idleAnim = useRef<AnimationPlaybackControls | null>(null);
+  const prefersReducedMotion = useReducedMotion();
   const count = items.length;
   const angleStep = count > 0 ? 360 / count : 0;
   // Standard even-spacing formula so tiles on the ring don't overlap —
   // radius grows automatically as more items get added.
   const radius = count > 1 ? Math.round(ITEM_SIZE / 2 / Math.tan(Math.PI / count)) : 0;
 
+  // Slow, continuous rotation while nobody's touching the ring. Stops
+  // the instant a drag starts, and picks back up from wherever it was
+  // left once the drag/flick finishes settling — never jumps.
+  function startIdleSpin() {
+    if (prefersReducedMotion || count <= 1) return;
+    const from = rotateY.get();
+    idleAnim.current = animate(rotateY, from - 360, {
+      duration: IDLE_SECONDS_PER_REVOLUTION,
+      ease: "linear",
+      repeat: Infinity,
+    });
+  }
+
+  function stopIdleSpin() {
+    idleAnim.current?.stop();
+    idleAnim.current = null;
+  }
+
+  useEffect(() => {
+    startIdleSpin();
+    return stopIdleSpin;
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [count, prefersReducedMotion]);
+
   function step(direction: 1 | -1) {
-    animate(rotateY, rotateY.get() + direction * angleStep, {
+    stopIdleSpin();
+    const controls = animate(rotateY, rotateY.get() + direction * angleStep, {
       type: "spring",
       stiffness: 200,
       damping: 24,
     });
+    controls.then(startIdleSpin);
+  }
+
+  function handleDragStart() {
+    stopIdleSpin();
   }
 
   function handleDrag(_: unknown, info: { delta: { x: number } }) {
@@ -35,12 +69,13 @@ export function OrbitGallery({ items }: OrbitGalleryProps) {
   }
 
   function handleDragEnd(_: unknown, info: { velocity: { x: number } }) {
-    animate(rotateY, rotateY.get() + info.velocity.x * 0.06, {
+    const controls = animate(rotateY, rotateY.get() + info.velocity.x * 0.06, {
       type: "inertia",
       power: 0.6,
       timeConstant: 300,
       restDelta: 0.5,
     });
+    controls.then(startIdleSpin);
   }
 
   if (count === 0) {
@@ -63,6 +98,7 @@ export function OrbitGallery({ items }: OrbitGalleryProps) {
           dragElastic={0}
           dragMomentum={false}
           dragConstraints={{ left: 0, right: 0 }}
+          onDragStart={handleDragStart}
           onDrag={handleDrag}
           onDragEnd={handleDragEnd}
           className="relative cursor-grab active:cursor-grabbing"
