@@ -62,6 +62,7 @@ export function OrbitGallery({ items }: OrbitGalleryProps) {
           drag="x"
           dragElastic={0}
           dragMomentum={false}
+          dragConstraints={{ left: 0, right: 0 }}
           onDrag={handleDrag}
           onDragEnd={handleDragEnd}
           className="relative cursor-grab active:cursor-grabbing"
