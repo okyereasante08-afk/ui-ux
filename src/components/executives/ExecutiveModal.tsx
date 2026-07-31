@@ -46,8 +46,12 @@ export default function ExecutiveModal({ executive, onClose }: ExecutiveModalPro
                   <X className="h-5 w-5" />
                 </button>
 
-                <div className="mx-auto mb-4 h-20 w-20 rounded-full bg-foreground/5 border border-foreground/10 flex items-center justify-center">
-                  <User className="h-9 w-9 text-foreground/25" strokeWidth={1.5} />
+                <div className="mx-auto mb-4 h-20 w-20 rounded-full bg-foreground/5 border border-foreground/10 flex items-center justify-center overflow-hidden">
+                  {executive.photo ? (
+                    <img src={executive.photo} alt={executive.name} className="h-full w-full object-cover" />
+                  ) : (
+                    <User className="h-9 w-9 text-foreground/25" strokeWidth={1.5} />
+                  )}
                 </div>
 
                 <h3 className="font-heading text-xl font-bold text-board-white">{executive.name}</h3>

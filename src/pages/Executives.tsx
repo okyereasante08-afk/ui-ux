@@ -5,29 +5,38 @@ import PageHeader from "@/components/ui/PageHeader";
 import EmptyState from "@/components/ui/EmptyState";
 import ExecutiveCard, { type Executive } from "@/components/executives/ExecutiveCard";
 import ExecutiveModal from "@/components/executives/ExecutiveModal";
+import { getExecutivePhoto } from "@/lib/executivePhotos";
 
 /*
   Content verified via live fetch of acesknust.com/executives.
   Live site's year dropdown has nothing selected by default, reading as
   dead on first load — defaults to the first year here as a fix.
 
-  PLACEHOLDER DATA below for 2025/2026 — names, bios, and social links are
-  all stand-ins to preview the card/modal design. Swap for real executive
-  profiles (photo, name, role, bio, actual social URLs) before ship.
-  Previous years are left as honest empty states since there's no real
-  data for them yet either.
+  Photos are auto-attached by id (see src/lib/executivePhotos.ts) — drop
+  a file named <id>.jpg into src/assets/executives/ and it shows up here
+  automatically, no edits needed below.
+
+  President (Hanz Ofosuhene Sintim) has a real photo + real LinkedIn.
+  Everyone else is still placeholder bio/social data — swap in as real
+  profiles become available.
 */
 
 const years = ["2025/2026", "2024/2025", "2023/2024"];
 
-const placeholderExecutives: Executive[] = [
-  { id: "1", name: "Hanz Ofosuhene Sintim", role: "President", bio: "ACES President|Kwame Nkrumah University of Science and Technology| Semiconductor engineer Enthusiast", socials: { linkedin: "#", whatsapp: "#", instagram: "#" } },
-  { id: "2", name: "Full Name", role: "Vice President", bio: "Placeholder bio — add a short description of what this executive does once real profiles are available.", socials: { linkedin: "#", whatsapp: "#", instagram: "#" } },
-  { id: "3", name: "Full Name", role: "General Secretary", bio: "Placeholder bio — add a short description of what this executive does once real profiles are available.", socials: { linkedin: "#", whatsapp: "#", snapchat: "#" } },
-  { id: "4", name: "Full Name", role: "Financial Secretary", bio: "Placeholder bio — add a short description of what this executive does once real profiles are available.", socials: { linkedin: "#", whatsapp: "#", snapchat: "#" } },
-  { id: "5", name: "Full Name", role: "Public Relations Officer", bio: "Placeholder bio — add a short description of what this executive does once real profiles are available.", socials: { linkedin: "#", instagram: "#", snapchat: "#" } },
-  { id: "6", name: "Full Name", role: "Organizing Secretary", bio: "Placeholder bio — add a short description of what this executive does once real profiles are available.", socials: { linkedin: "#", whatsapp: "#" } },
+const rawExecutives: Executive[] = [
+  { id: "president", name: "Hanz Ofosuhene Sintim", role: "President", bio: "ACES President | Kwame Nkrumah University of Science and Technology | Semiconductor Engineer Enthusiast", socials: { linkedin: "https://www.linkedin.com/in/hanz-ofosuhene-sintim-9a9160254/" } },
+  { id: "vice-president", name: "Full Name", role: "Vice President", bio: "Placeholder bio — add a short description of what this executive does once real profiles are available.", socials: { linkedin: "#", whatsapp: "#", instagram: "#" } },
+  { id: "general-secretary", name: "Full Name", role: "General Secretary", bio: "Placeholder bio — add a short description of what this executive does once real profiles are available.", socials: { linkedin: "#", whatsapp: "#", snapchat: "#" } },
+  { id: "financial-secretary", name: "Full Name", role: "Financial Secretary", bio: "Placeholder bio — add a short description of what this executive does once real profiles are available.", socials: { linkedin: "#", whatsapp: "#", snapchat: "#" } },
+  { id: "pro", name: "Full Name", role: "Public Relations Officer", bio: "Placeholder bio — add a short description of what this executive does once real profiles are available.", socials: { linkedin: "#", instagram: "#", snapchat: "#" } },
+  { id: "organizing-secretary", name: "Full Name", role: "Organizing Secretary", bio: "Placeholder bio — add a short description of what this executive does once real profiles are available.", socials: { linkedin: "#", whatsapp: "#" } },
 ];
+
+// Attach whatever photo exists for each id — automatic, no manual wiring.
+const placeholderExecutives: Executive[] = rawExecutives.map((exec) => ({
+  ...exec,
+  photo: getExecutivePhoto(exec.id),
+}));
 
 const executivesByYear: Record<string, Executive[]> = {
   "2025/2026": placeholderExecutives,
