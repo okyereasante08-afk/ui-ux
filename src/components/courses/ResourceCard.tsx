@@ -1,6 +1,7 @@
 import { motion } from "framer-motion";
-import { FileText, FileArchive, Presentation, Download, Bookmark, Eye, FileQuestion, ClipboardList, BookOpen } from "lucide-react";
+import { FileText, FileArchive, Presentation, Bookmark, Eye, FileQuestion, ClipboardList, BookOpen } from "lucide-react";
 import { type Resource, resourceTypeLabels, formatFileSize, formatDateAdded } from "./types";
+import DownloadButton from "./DownloadButton";
 import { cn } from "@/lib/utils";
 
 const formatIcons = {
@@ -98,10 +99,7 @@ export default function ResourceCard({
           <Eye className="h-3.5 w-3.5" />
           Preview
         </button>
-        <button className="flex flex-1 items-center justify-center gap-1.5 rounded-lg bg-aces-blue py-2 text-xs font-medium text-white hover:bg-aces-blue/90 transition-colors">
-          <Download className="h-3.5 w-3.5" />
-          Download
-        </button>
+        <DownloadButton sizeKB={resource.sizeKB} className="flex-1" />
       </div>
     </motion.div>
   );

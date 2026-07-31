@@ -30,6 +30,7 @@ const rawOfficials: Official[] = [
     department: "Computer Engineering Department",
     office: "Faculty of Electrical and Computer Engineering Block, Room A312",
     bio: "Scientific Director, DIPPER Lab (Distributed IoT Platforms, Privacy and Edge-Intelligence Research). Research focus: AI for Development, Industrial IoT, and blockchain interoperability.",
+    linkedin:""
   },
   { id: "deputy-hod", name: "Full Name", title: "Deputy Head of Department", department: "Computer Engineering Department", office: "Office — TBD, CpE Block", email: "deputy.cpe@knust.edu.gh", linkedin: "#" },
   { id: "exams-officer", name: "Full Name", title: "Examinations Officer", department: "Computer Engineering Department", office: "Office — TBD, CpE Block", email: "exams.cpe@knust.edu.gh" },

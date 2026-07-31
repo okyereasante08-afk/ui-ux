@@ -62,6 +62,12 @@ export default function ProductDetail() {
     setTimeout(() => setJustAdded(false), 1800);
   };
 
+  const handleBuyNow = () => {
+    if (!allGroupsSelected) return;
+    add(product.id, quantity, groups.length > 0 ? selected : undefined);
+    navigate("/checkout");
+  };
+
   const descriptionLong = (product.description ?? "").length > 140;
   const descriptionShown =
     !descExpanded && descriptionLong
@@ -307,14 +313,16 @@ export default function ProductDetail() {
         </div>
       )}
 
-      {/* Sticky add-to-cart bar */}
-      <div className="fixed inset-x-0 bottom-16 z-20 border-t border-border bg-circuit-navy/95 px-4 py-3 backdrop-blur-sm">
+      {/* Sticky action bar */}
+      <div className="fixed inset-x-0 bottom-16 z-20 flex gap-2 border-t border-border bg-circuit-navy/95 px-4 py-3 backdrop-blur-sm">
         <button
           onClick={handleAddToCart}
           disabled={!allGroupsSelected || product.stock === 0}
           className={cn(
-            "flex w-full items-center justify-center gap-2 rounded-full py-3.5 text-sm font-semibold transition-colors",
-            justAdded ? "bg-green-600 text-white" : "bg-aces-blue text-white",
+            "flex flex-1 items-center justify-center gap-2 rounded-full border py-3.5 text-sm font-semibold transition-colors",
+            justAdded
+              ? "border-green-600 bg-green-600/10 text-green-500"
+              : "border-aces-blue/40 text-aces-blue hover:bg-aces-blue/5",
             (!allGroupsSelected || product.stock === 0) && "opacity-40",
           )}
         >
@@ -328,7 +336,7 @@ export default function ProductDetail() {
                 className="flex items-center gap-2"
               >
                 <Check className="h-4 w-4" />
-                Added to cart
+                Added
               </motion.span>
             ) : (
               <motion.span
@@ -339,14 +347,25 @@ export default function ProductDetail() {
                 className="flex items-center gap-2"
               >
                 <ShoppingBag className="h-4 w-4" />
-                {product.stock === 0
-                  ? "Out of stock"
-                  : !allGroupsSelected
-                    ? "Select options"
-                    : `Add to cart — GHS ${(unitPrice * quantity).toFixed(2)}`}
+                Add to cart
               </motion.span>
             )}
           </AnimatePresence>
+        </button>
+
+        <button
+          onClick={handleBuyNow}
+          disabled={!allGroupsSelected || product.stock === 0}
+          className={cn(
+            "flex flex-1 items-center justify-center gap-2 rounded-full bg-aces-blue py-3.5 text-sm font-semibold text-white transition-colors",
+            (!allGroupsSelected || product.stock === 0) && "opacity-40",
+          )}
+        >
+          {product.stock === 0
+            ? "Out of stock"
+            : !allGroupsSelected
+              ? "Select options"
+              : `Buy now — GHS ${(unitPrice * quantity).toFixed(2)}`}
         </button>
       </div>
     </div>
