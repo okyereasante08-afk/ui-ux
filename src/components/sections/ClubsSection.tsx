@@ -8,7 +8,6 @@ export default function ClubsSection() {
   return (
     <TraceNode id="clubs" className="py-20 px-8 md:px-12 lg:px-24">
       <div className="max-w-2xl mx-auto md:mx-0">
-        {/* Section header */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -24,7 +23,6 @@ export default function ClubsSection() {
           </h2>
         </motion.div>
 
-        {/* Club cards — each links to its own detail page now */}
         <div className="space-y-6">
           {clubs.map((club, index) => (
             <motion.div
@@ -38,13 +36,17 @@ export default function ClubsSection() {
                 to={`/clubs/${club.slug}`}
                 className="chip-notch relative flex items-start gap-4 bg-foreground/[0.03] border border-foreground/10 rounded-lg p-4 hover:border-aces-blue/30 transition-colors duration-300 group"
               >
-                {/* Chip notch visual indicator */}
                 <div className="absolute top-0 left-0 w-3 h-3 border-t-2 border-l-2 border-aces-blue/40 rounded-tl" />
 
                 <img
                   src={club.image}
                   alt={club.name}
-                  className="w-20 h-20 rounded-md object-cover flex-shrink-0"
+                  className="w-20 h-20 rounded-md object-cover flex-shrink-0 bg-foreground/5"
+                  onError={(e) => {
+                    // Prevents a broken-image icon from looking like a
+                    // dead page if the asset is missing from /public/clubs/
+                    (e.target as HTMLImageElement).style.visibility = "hidden";
+                  }}
                 />
 
                 <div className="flex-1 min-w-0 py-1">

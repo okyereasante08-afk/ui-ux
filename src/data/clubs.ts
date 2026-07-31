@@ -3,7 +3,6 @@ export interface Club {
   code: string;
   name: string;
   image: string;
-  // Real copy, verified via live fetch of acesknust.com — not invented.
   description: string;
 }
 

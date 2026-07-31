@@ -38,6 +38,8 @@ const moreGroups = [
     icon: ShoppingBag,
     links: [
       { label: "Marketplace", path: "/marketplace" },
+       {label: "Vendor Dashboard", path: "/vendor-dashboard" },                              
+      { label: "Checkout", path: "/checkout" },
       { label: "ACES Shop", path: "/shop" },
     ],
   },
@@ -51,6 +53,13 @@ const moreGroups = [
       { label: "Register", path: "/register" },
     ],
   },
+  {
+    label: "Journeys",
+    icon: Calendar,
+    links: [
+      { label: "Journeys", path: "/journeys" },
+    ],
+  }
 ];
 
 export default function BottomNav() {

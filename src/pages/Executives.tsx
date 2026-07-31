@@ -21,7 +21,7 @@ import ExecutiveModal from "@/components/executives/ExecutiveModal";
 const years = ["2025/2026", "2024/2025", "2023/2024"];
 
 const placeholderExecutives: Executive[] = [
-  { id: "1", name: "Full Name", role: "President", bio: "Placeholder bio — add a short description of what this executive does once real profiles are available.", socials: { linkedin: "#", whatsapp: "#", instagram: "#" } },
+  { id: "1", name: "Hanz Ofosuhene Sintim", role: "President", bio: "ACES President|Kwame Nkrumah University of Science and Technology| Semiconductor engineer Enthusiast", socials: { linkedin: "#", whatsapp: "#", instagram: "#" } },
   { id: "2", name: "Full Name", role: "Vice President", bio: "Placeholder bio — add a short description of what this executive does once real profiles are available.", socials: { linkedin: "#", whatsapp: "#", instagram: "#" } },
   { id: "3", name: "Full Name", role: "General Secretary", bio: "Placeholder bio — add a short description of what this executive does once real profiles are available.", socials: { linkedin: "#", whatsapp: "#", snapchat: "#" } },
   { id: "4", name: "Full Name", role: "Financial Secretary", bio: "Placeholder bio — add a short description of what this executive does once real profiles are available.", socials: { linkedin: "#", whatsapp: "#", snapchat: "#" } },
