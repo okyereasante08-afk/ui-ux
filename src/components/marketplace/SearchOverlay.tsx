@@ -1,8 +1,10 @@
 import { useEffect, useRef, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion";
 import { ArrowLeft, Search, X } from "lucide-react";
 import { mockProducts } from "@/lib/mockProducts";
 import { Product } from "@/types/marketplace";
+import ProductImage from "@/components/marketplace/ProductImage";
 
 interface SearchOverlayProps {
   open: boolean;
@@ -16,6 +18,7 @@ export default function SearchOverlay({ open, onClose, onSelectProduct }: Search
   const [query, setQuery] = useState("");
   const [recent, setRecent] = useState<string[]>([]);
   const inputRef = useRef<HTMLInputElement>(null);
+  const navigate = useNavigate();
 
   useEffect(() => {
     if (open) {
@@ -46,6 +49,16 @@ export default function SearchOverlay({ open, onClose, onSelectProduct }: Search
     const updated = [term, ...recent.filter((r) => r !== term)].slice(0, 6);
     setRecent(updated);
     window.localStorage.setItem(RECENT_KEY, JSON.stringify(updated));
+  };
+
+  const handleSelect = (product: Product) => {
+    commitSearch(query);
+    onClose();
+    if (onSelectProduct) {
+      onSelectProduct(product);
+    } else {
+      navigate(`/marketplace/product/${product.id}`);
+    }
   };
 
   return (
@@ -109,17 +122,16 @@ export default function SearchOverlay({ open, onClose, onSelectProduct }: Search
                 {results.map((product) => (
                   <button
                     key={product.id}
-                    onClick={() => {
-                      commitSearch(query);
-                      onSelectProduct?.(product);
-                    }}
+                    onClick={() => handleSelect(product)}
                     className="flex items-center gap-3 rounded-lg px-2 py-2 text-left hover:bg-foreground/5"
                   >
-                    <img
-                      src={product.image}
-                      alt={product.title}
-                      className="h-11 w-11 shrink-0 rounded-md object-cover"
-                    />
+                    <div className="h-11 w-11 shrink-0">
+                      <ProductImage
+                        src={product.image}
+                        alt={product.title}
+                        className="h-11 w-11 rounded-md object-cover"
+                      />
+                    </div>
                     <div className="min-w-0 flex-1">
                       <p className="truncate text-sm font-medium text-board-white">{product.title}</p>
                       <p className="font-mono text-[10px] uppercase tracking-wider text-foreground/40">
