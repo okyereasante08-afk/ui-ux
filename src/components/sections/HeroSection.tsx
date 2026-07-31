@@ -39,17 +39,9 @@ export default function HeroSection() {
   }
   return (
     <section className="relative min-h-[100dvh] flex flex-col justify-center px-6 md:px-12 lg:px-24 overflow-hidden">
-      {/* Background subtle grid */}
-      <div
-        className="absolute inset-0 opacity-[0.03]"
-        style={{
-          backgroundImage: `
-            linear-gradient(rgba(11, 95, 255, 0.3) 1px, transparent 1px),
-            linear-gradient(90deg, rgba(11, 95, 255, 0.3) 1px, transparent 1px)
-          `,
-          backgroundSize: "60px 60px",
-        }}
-      />
+      {/* Background grid moved to the shared AmbientBackground component
+          (rendered once in Home.tsx behind all sections) so it doesn't
+          restart or double up with the same pattern per-section. */}
 
       <div className="relative z-10 max-w-2xl">
         {/* Eyebrow — mono label. Also the easter-egg tap target (see above). */}

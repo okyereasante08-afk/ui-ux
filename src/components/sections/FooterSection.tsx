@@ -2,9 +2,22 @@ import { motion } from "framer-motion";
 import { Instagram, Twitter, Linkedin, Mail } from "lucide-react";
 import { Link } from "react-router-dom";
 
-// Real socials, verified via live fetch — the previous version had a
-// fabricated GitHub link that doesn't exist on the live site (it's
-// LinkedIn/Instagram/X, not GitHub).
+/*
+  Real socials, verified via live fetch — the previous version had a
+  fabricated GitHub link that doesn't exist on the live site (it's
+  LinkedIn/Instagram/X, not GitHub).
+
+  Padding: pt-16 → pt-12 trimmed to match the reduction on the other
+  sections. pb-32 was LEFT AS-IS on purpose, not trimmed like the rest —
+  BottomNav is a fixed h-16 (4rem) bar sitting on top of the page
+  content, so the footer needs real clearance underneath its last line
+  or the copyright text would sit against/behind the nav. pb-32 is 8rem,
+  double the nav's height, which reads as intentional breathing room
+  rather than an oversight. If it still feels excessive in practice,
+  the safer next trim is pb-32 → pb-24 (6rem, 2rem of clearance beyond
+  the nav) rather than matching the ~14 used elsewhere on the page.
+*/
+
 const socials = [
   { icon: Linkedin, label: "LinkedIn", href: "https://www.linkedin.com/company/aces-knust/" },
   { icon: Instagram, label: "Instagram", href: "https://www.instagram.com/aces_knust/" },
@@ -22,18 +35,11 @@ const links = [
 
 export default function FooterSection() {
   return (
-    <footer className="relative bg-circuit-navy border-t border-foreground/5 pt-16 pb-32 px-8 md:px-12 lg:px-24">
-      {/* Ground plane visual — subtle trace lines */}
-      <div
-        className="absolute inset-0 opacity-[0.02] pointer-events-none"
-        style={{
-          backgroundImage: `
-            linear-gradient(rgba(11, 95, 255, 0.5) 1px, transparent 1px),
-            linear-gradient(90deg, rgba(11, 95, 255, 0.5) 1px, transparent 1px)
-          `,
-          backgroundSize: "40px 40px",
-        }}
-      />
+    <footer className="relative bg-circuit-navy border-t border-foreground/5 pt-12 pb-32 px-8 md:px-12 lg:px-24">
+      {/* Ground plane grid moved to the shared AmbientBackground component
+          (rendered once in Home.tsx behind all sections) — previously
+          this was a second, slightly different copy of the same grid
+          pattern used in HeroSection. */}
 
       <div className="relative z-10 max-w-2xl mx-auto md:mx-0">
         {/* Logo mark */}

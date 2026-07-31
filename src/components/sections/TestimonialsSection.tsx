@@ -2,6 +2,15 @@ import { motion } from "framer-motion";
 import { Quote } from "lucide-react";
 import { TraceNode } from "@/components/TraceConnector";
 
+/*
+  Trimmed py-20 → py-14, header mb-12 → mb-8, card gap space-y-6 →
+  space-y-4 — same reduction already applied to ClubsSection. This
+  section only renders one testimonial right now, so its py-20 was
+  producing a large empty-feeling block around a single card; the
+  smaller padding reads better at this content density regardless of
+  whether more testimonials get added later.
+*/
+
 const testimonials = [
   {
     // TODO: replace with a real, permission-granted member testimonial.
@@ -18,7 +27,7 @@ const testimonials = [
 
 export default function TestimonialsSection() {
   return (
-    <TraceNode id="testimonials" className="py-20 px-6 md:px-12 lg:px-24">
+    <TraceNode id="testimonials" className="py-14 px-6 md:px-12 lg:px-24">
       <div className="max-w-2xl mx-auto md:mx-0">
         {/* Section header */}
         <motion.div
@@ -26,7 +35,7 @@ export default function TestimonialsSection() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.5 }}
-          className="mb-12"
+          className="mb-8"
         >
           <p className="font-mono text-xs text-aces-blue uppercase tracking-widest mb-2">
             04 // Voices
@@ -37,7 +46,7 @@ export default function TestimonialsSection() {
         </motion.div>
 
         {/* Testimonial cards */}
-        <div className="space-y-6">
+        <div className="space-y-4">
           {testimonials.map((t, index) => (
             <motion.div
               key={t.name}

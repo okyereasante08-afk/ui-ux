@@ -4,12 +4,19 @@ import { ChevronRight } from "lucide-react";
 import { TraceNode } from "@/components/TraceConnector";
 import { upcomingEvents } from "@/data/events";
 
+/*
+  Trimmed py-20 → py-14 and header mb-8 → mb-6, matching the reduction
+  already applied to ClubsSection — this section was carrying the same
+  heavy spacing that made the whole page feel too spacious even after
+  Clubs was fixed on its own.
+*/
+
 export default function EventsSection() {
   const scrollRef = useRef<HTMLDivElement>(null);
 
   return (
-    <TraceNode id="events" className="py-20">
-      <div className="px-8 md:px-12 lg:px-24 mb-8">
+    <TraceNode id="events" className="py-14">
+      <div className="px-8 md:px-12 lg:px-24 mb-6">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
